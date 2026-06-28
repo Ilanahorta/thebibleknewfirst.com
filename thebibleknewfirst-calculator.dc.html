@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#13120E;color:#F0EBE1;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:64px;background:rgba(19,18,14,.96);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:22px;color:#F0EBE1;}
+.nav-logo em{color:#C9A227;}
+.nav-back{font:400 13px/1 'Inter',sans-serif;color:rgba(240,235,225,.45);transition:color .18s;}
+.nav-back:hover{color:#F0EBE1;}
+.hero{padding:64px 52px 40px;text-align:center;background:#0D0C09;}
+.eyebrow{font:500 11px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A227;margin-bottom:14px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(34px,4vw,52px);line-height:1.1;color:#F0EBE1;margin-bottom:10px;}
+.hero p{font:300 16px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.5);max-width:520px;margin:0 auto;}
+
+/* TABS */
+.tabs{display:flex;max-width:700px;margin:32px auto 0;border-radius:4px;overflow:hidden;border:1px solid rgba(255,255,255,.07);}
+.tab{flex:1;padding:14px 20px;font:500 12px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;background:#0D0C09;color:rgba(240,235,225,.4);cursor:pointer;border:none;transition:all .2s;text-align:center;}
+.tab.active{background:#C9A227;color:#13120E;}
+.tab:not(.active):hover{color:#F0EBE1;}
+
+/* SHARED LAYOUT */
+.shell{max-width:960px;margin:0 auto;padding:48px 52px 100px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
+.inputs{display:flex;flex-direction:column;gap:18px;}
+.field{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:18px 20px;}
+.field label{display:block;font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.3);margin-bottom:10px;}
+.field-row{display:flex;align-items:center;gap:8px;}
+.field-prefix{font:300 22px/1 'Cormorant Garamond',serif;color:rgba(240,235,225,.4);}
+.field input[type=number]{flex:1;background:transparent;border:none;outline:none;font:600 28px/1 'Cormorant Garamond',serif;color:#F0EBE1;width:100%;}
+.field input[type=range]{width:100%;accent-color:#C9A227;margin-top:8px;height:2px;cursor:pointer;}
+.field-hint{font:300 11px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.22);margin-top:7px;}
+
+/* DEBT LIST */
+.debt-list{display:flex;flex-direction:column;gap:8px;}
+.debt-item{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:14px 16px;display:grid;grid-template-columns:1fr 1fr 1fr 28px;gap:10px;align-items:center;}
+.debt-input{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.12);outline:none;font:300 14px/1 'Inter',sans-serif;color:#F0EBE1;padding:4px 0;width:100%;}
+.debt-input::placeholder{color:rgba(240,235,225,.22);}
+.debt-rm{background:none;border:none;color:rgba(240,235,225,.25);cursor:pointer;font-size:16px;padding:0;transition:color .15s;text-align:center;}
+.debt-rm:hover{color:#C96A5A;}
+.debt-head{display:grid;grid-template-columns:1fr 1fr 1fr 28px;gap:10px;padding:0 16px 6px;font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,225,.25);}
+.add-debt{display:flex;align-items:center;gap:8px;background:none;border:1px dashed rgba(255,255,255,.1);border-radius:4px;padding:12px 16px;color:rgba(240,235,225,.35);font:300 13px/1 'Inter',sans-serif;cursor:pointer;width:100%;transition:all .18s;}
+.add-debt:hover{border-color:rgba(201,162,39,.3);color:#C9A227;}
+.strat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+.strat-btn{padding:12px;border-radius:4px;border:1px solid rgba(255,255,255,.08);background:#0D0C09;color:rgba(240,235,225,.5);font:500 11px/1.3 'Inter',sans-serif;cursor:pointer;text-align:center;transition:all .18s;}
+.strat-btn.active{border-color:#C9A227;background:rgba(201,162,39,.08);color:#F0EBE1;}
+
+/* RESULTS */
+.results{position:sticky;top:20px;display:flex;flex-direction:column;gap:14px;}
+.result-card{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px 22px;}
+.result-label{font:500 9px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.3);margin-bottom:7px;}
+.result-num{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:42px;line-height:1;color:#C9A227;margin-bottom:4px;}
+.result-sub{font:300 12px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.35);}
+.result-green{color:#6DA87A;}
+.bible-box{background:#13120E;border-left:2px solid #C9A227;padding:14px 16px;border-radius:0 4px 4px 0;}
+.bible-ref{font:500 9px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C9A227;margin-bottom:7px;}
+.bible-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.5;color:rgba(240,235,225,.65);}
+.tbl{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;overflow:hidden;}
+.tbl-head{display:grid;grid-template-columns:repeat(3,1fr);padding:9px 16px;background:#0A0908;}
+.tbl-head span{font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,225,.22);}
+.tbl-row{display:grid;grid-template-columns:repeat(3,1fr);padding:9px 16px;border-top:1px solid rgba(255,255,255,.04);}
+.tbl-row span{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.5);}
+.tbl-row span.hi{color:#C9A227;font-weight:500;}
+.disc{font:300 10px/1.5 'Inter',sans-serif;color:rgba(240,235,225,.18);text-align:center;}
+.cta-row{display:flex;gap:10px;}
+.btn-gold{flex:1;background:#C9A227;color:#13120E;font:600 11px/1 'Inter',sans-serif;letter-spacing:.06em;padding:13px;border-radius:4px;text-align:center;display:block;}
+.btn-ol{flex:1;border:1px solid rgba(201,162,39,.3);color:#C9A227;font:500 11px/1 'Inter',sans-serif;letter-spacing:.06em;padding:12px;border-radius:4px;text-align:center;display:block;}
+@media(max-width:720px){.shell{grid-template-columns:1fr;}.results{position:static;}nav{padding:0 24px;}.hero{padding:48px 24px 32px;}.shell{padding:36px 24px 80px;}}
+</style>
+</helmet>
+
+<nav>
+  <a href="thebibleknewfirst-index.html" class="nav-logo">The Bible <em>Knew First.</em></a>
+  <a href="thebibleknewfirst-index.html" class="nav-back">← Home</a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Free Calculator · No Sign-Up</div>
+  <h1>When Will You Be Free?</h1>
+  <p>Two calculators in one — pay off your debts and grow your wealth. The Bible had both strategies 3,000 years ago.</p>
+  <div class="tabs">
+    <button class="tab {{ tab1cls }}" onClick="{{ showDebt }}">💳 Pay Off My Debts</button>
+    <button class="tab {{ tab2cls }}" onClick="{{ showInvest }}">📈 Grow My Wealth</button>
+  </div>
+</div>
+
+<!-- DEBT TAB -->
+<sc-if value="{{ isDebt }}" hint-placeholder-val="{{ true }}">
+  <div class="shell">
+    <div class="inputs">
+      <div class="field">
+        <label>Monthly Extra Payment</label>
+        <div class="field-row">
+          <span class="field-prefix">$</span>
+          <input type="number" value="{{ extra }}" onInput="{{ setExtra }}" min="0" max="5000" step="50">
+        </div>
+        <input type="range" min="0" max="2000" step="50" value="{{ extra }}" onInput="{{ setExtra }}">
+        <div class="field-hint">How much extra you can pay toward debts each month, beyond minimums</div>
+      </div>
+      <div>
+        <div class="debt-head"><span>Debt name</span><span>Balance ($)</span><span>Rate (%) / Min ($)</span><span></span></div>
+        <div class="debt-list">
+          <sc-for list="{{ debts }}" as="d" hint-placeholder-count="2">
+            <div class="debt-item">
+              <input class="debt-input" type="text" placeholder="Credit card..." value="{{ d.name }}" onInput="{{ d.setName }}">
+              <input class="debt-input" type="number" placeholder="5000" value="{{ d.balance }}" onInput="{{ d.setBalance }}">
+              <input class="debt-input" type="number" placeholder="24.9" value="{{ d.rate }}" onInput="{{ d.setRate }}">
+              <button class="debt-rm" onClick="{{ d.remove }}">×</button>
+            </div>
+          </sc-for>
+        </div>
+        <button class="add-debt" onClick="{{ addDebt }}" style="margin-top:8px;">+ Add debt</button>
+      </div>
+      <div class="field">
+        <label>Strategy</label>
+        <div class="strat-row">
+          <button class="strat-btn {{ snowballCls }}" onClick="{{ setSnowball }}">❄️ Debt Snowball<br><small style="font-weight:300;font-size:10px;opacity:.6;">Smallest balance first</small></button>
+          <button class="strat-btn {{ avalancheCls }}" onClick="{{ setAvalanche }}">🏔 Debt Avalanche<br><small style="font-weight:300;font-size:10px;opacity:.6;">Highest rate first</small></button>
+        </div>
+      </div>
+      <div class="bible-box">
+        <div class="bible-ref">📖 Proverbs 22:7</div>
+        <div class="bible-q">"The rich rule over the poor, and the borrower is slave to the lender."</div>
+      </div>
+    </div>
+    <div class="results">
+      <div class="result-card">
+        <div class="result-label">Debt-Free In</div>
+        <div class="result-num">{{ debtFreeIn }}</div>
+        <div class="result-sub">{{ debtFreeDate }}</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Total Debt</div>
+        <div class="result-num" style="font-size:30px;color:#F0EBE1;">${{ totalDebt }}</div>
+        <div class="result-sub">across {{ debtCount }} debt(s)</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Interest Saved vs. Minimums Only</div>
+        <div class="result-num result-green" style="font-size:28px;">${{ interestSaved }}</div>
+        <div class="result-sub">by paying extra ${{ extra }}/month</div>
+      </div>
+      <div class="cta-row">
+        <a href="thebibleknewfirst-budget.dc.html" class="btn-gold">Build My Budget →</a>
+        <a href="thebibleknewfirst-index.html#contact" class="btn-ol">Talk to Ilana</a>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<!-- INVEST TAB -->
+<sc-if value="{{ isInvest }}" hint-placeholder-val="{{ false }}">
+  <div class="shell">
+    <div class="inputs">
+      <div class="field">
+        <label>Monthly Investment</label>
+        <div class="field-row">
+          <span class="field-prefix">$</span>
+          <input type="number" value="{{ monthly }}" onInput="{{ setMonthly }}" min="10" max="10000" step="10">
+        </div>
+        <input type="range" min="50" max="5000" step="50" value="{{ monthly }}" onInput="{{ setMonthly }}">
+        <div class="field-hint">How much you invest each month — automatically, before spending</div>
+      </div>
+      <div class="field">
+        <label>Annual Return Rate (%)</label>
+        <div class="field-row">
+          <input type="number" value="{{ rate }}" onInput="{{ setRate }}" min="1" max="20" step="0.5" style="font-size:28px;">
+          <span class="field-prefix">%</span>
+        </div>
+        <input type="range" min="1" max="15" step="0.5" value="{{ rate }}" onInput="{{ setRate }}">
+        <div class="field-hint">Historical S&amp;P 500 average ~10%/yr. Source: investor.gov</div>
+      </div>
+      <div class="field">
+        <label>Investment Horizon (years)</label>
+        <div class="field-row">
+          <input type="number" value="{{ years }}" onInput="{{ setYears }}" min="1" max="50" step="1" style="font-size:28px;">
+        </div>
+        <input type="range" min="5" max="40" step="1" value="{{ years }}" onInput="{{ setYears }}">
+        <div class="field-hint">Joseph's plan was 14 years. Yours can start today.</div>
+      </div>
+      <div class="bible-box">
+        <div class="bible-ref">📖 Matthew 25:27</div>
+        <div class="bible-q">"You should have put my money on deposit with the bankers, so that when I returned I would have received it back with interest."</div>
+      </div>
+    </div>
+    <div class="results">
+      <div class="result-card">
+        <div class="result-label">Total Accumulated</div>
+        <div class="result-num">{{ totalFormatted }}</div>
+        <div class="result-sub">after {{ years }} years at ${{ monthly }}/month</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Your Deposits</div>
+        <div class="result-num" style="font-size:30px;color:#F0EBE1;">{{ depositedFormatted }}</div>
+        <div class="result-sub">Compound interest generates the rest</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Generated by Compound Interest</div>
+        <div class="result-num result-green" style="font-size:28px;">{{ earningsFormatted }}</div>
+        <div class="result-sub">{{ earningsPct }}% of your total from growth</div>
+      </div>
+      <div class="tbl">
+        <div class="tbl-head"><span>Year</span><span>Deposited</span><span>Total</span></div>
+        <sc-for list="{{ milestones }}" as="m" hint-placeholder-count="5">
+          <div class="tbl-row"><span>Yr {{ m.yr }}</span><span>${{ m.dep }}</span><span class="hi">${{ m.tot }}</span></div>
+        </sc-for>
+      </div>
+      <div class="disc">Illustrative only. Past returns don't guarantee future results. SEC: investor.gov</div>
+      <div class="cta-row">
+        <a href="thebibleknewfirst-budget.dc.html" class="btn-gold">Build My Budget →</a>
+        <a href="thebibleknewfirst-index.html#contact" class="btn-ol">Talk to Ilana</a>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    tab: 'debt',
+    extra: 200,
+    strategy: 'snowball',
+    debts: [
+      { id: 1, name: 'Credit Card', balance: 5000, rate: 24.99 },
+      { id: 2, name: 'Car Loan', balance: 12000, rate: 7.5 },
+    ],
+    monthly: 300, rate: 10, years: 25,
+  };
+
+  fmt(n) {
+    if (n >= 1000000) return (n/1000000).toFixed(2) + 'M';
+    if (n >= 1000) return Math.round(n/1000) + 'K';
+    return Math.round(n).toString();
+  }
+  fmtC(n) { return n.toLocaleString('en-US', {minimumFractionDigits:0,maximumFractionDigits:0}); }
+
+  calcDebt(debts, extra, strategy) {
+    if (!debts.length) return { months: 0, interestSaved: 0 };
+    let ds = debts.map(d => ({ ...d, balance: +d.balance || 0, rate: +d.rate || 0, min: Math.max(25, (+d.balance||0) * 0.02) })).filter(d => d.balance > 0);
+    if (!ds.length) return { months: 0, interestSaved: 0 };
+
+    // Min-only interest first
+    let minOnlyMonths = 0, minOnlyInterest = 0;
+    let ds0 = ds.map(d => ({ ...d }));
+    for (let m = 0; m < 600 && ds0.some(d => d.balance > 0); m++) {
+      ds0.forEach(d => { if (d.balance <= 0) return; const int = d.balance * d.rate/100/12; minOnlyInterest += int; const pay = Math.min(d.balance + int, d.min); d.balance = d.balance + int - pay; });
+      minOnlyMonths++;
+    }
+
+    // With strategy
+    let months = 0, totalInterest = 0;
+    let dsS = ds.map(d => ({ ...d }));
+    for (let m = 0; m < 600 && dsS.some(d => d.balance > 0); m++) {
+      let avail = extra;
+      dsS.forEach(d => { if (d.balance <= 0) return; const int = d.balance * d.rate/100/12; totalInterest += int; const pay = Math.min(d.balance + int, d.min); d.balance = Math.max(0, d.balance + int - pay); avail -= 0; });
+      // Sort and apply extra
+      const active = dsS.filter(d => d.balance > 0);
+      if (strategy === 'snowball') active.sort((a,b) => a.balance - b.balance);
+      else active.sort((a,b) => b.rate - a.rate);
+      let rem = avail;
+      for (const d of active) { if (rem <= 0) break; const pay = Math.min(d.balance, rem); d.balance = Math.max(0, d.balance - pay); rem -= pay; }
+      months++;
+    }
+    return { months, interestSaved: Math.max(0, minOnlyInterest - totalInterest) };
+  }
+
+  calcInvest(monthly, rate, years) {
+    const r = rate/100/12, n = years*12;
+    if (r === 0) return { total: monthly*n, deposited: monthly*n };
+    return { total: monthly*((Math.pow(1+r,n)-1)/r), deposited: monthly*n };
+  }
+
+  renderVals() {
+    const { tab, extra, strategy, debts, monthly, rate, years } = this.state;
+    const isDebt = tab === 'debt';
+
+    // Debt calc
+    const totalDebt = debts.reduce((s,d) => s + (+d.balance||0), 0);
+    const { months, interestSaved } = this.calcDebt(debts, extra, strategy);
+    const yrs = Math.floor(months/12), mos = months%12;
+    const debtFreeIn = months === 0 ? 'Enter debts' : (yrs > 0 ? yrs + ' yr' + (yrs>1?'s':'') + (mos>0?' '+mos+' mo':'') : mos + ' months');
+    const now = new Date(); now.setMonth(now.getMonth()+months);
+    const debtFreeDate = months > 0 ? now.toLocaleDateString('en-US',{month:'long',year:'numeric'}) : '';
+
+    // Invest calc
+    const { total, deposited } = this.calcInvest(monthly, rate, years);
+    const earnings = total - deposited;
+    const pct = total > 0 ? Math.round((earnings/total)*100) : 0;
+    const checkpoints = [1,5,10,15,20,25,30].filter(y=>y<=years);
+    if (!checkpoints.includes(years)) checkpoints.push(years);
+    const milestones = checkpoints.slice(0,6).map(yr => {
+      const r = this.calcInvest(monthly, rate, yr);
+      return { yr, dep: this.fmt(r.deposited), tot: this.fmt(r.total) };
+    });
+
+    return {
+      tab1cls: isDebt ? 'active' : '',
+      tab2cls: !isDebt ? 'active' : '',
+      isDebt, isInvest: !isDebt,
+      showDebt: () => this.setState({ tab: 'debt' }),
+      showInvest: () => this.setState({ tab: 'invest' }),
+      // Debt
+      extra, setExtra: (e) => this.setState({ extra: +e.target.value }),
+      debts: debts.map((d, i) => ({
+        ...d,
+        setName: (e) => { const ds=[...this.state.debts]; ds[i]={...ds[i],name:e.target.value}; this.setState({debts:ds}); },
+        setBalance: (e) => { const ds=[...this.state.debts]; ds[i]={...ds[i],balance:+e.target.value||0}; this.setState({debts:ds}); },
+        setRate: (e) => { const ds=[...this.state.debts]; ds[i]={...ds[i],rate:+e.target.value||0}; this.setState({debts:ds}); },
+        remove: () => { const ds=this.state.debts.filter((_,j)=>j!==i); this.setState({debts:ds}); },
+      })),
+      addDebt: () => this.setState({ debts: [...debts, { id: Date.now(), name: '', balance: 0, rate: 0 }] }),
+      snowballCls: strategy==='snowball'?'active':'',
+      avalancheCls: strategy==='avalanche'?'active':'',
+      setSnowball: () => this.setState({ strategy: 'snowball' }),
+      setAvalanche: () => this.setState({ strategy: 'avalanche' }),
+      totalDebt: this.fmtC(totalDebt),
+      debtCount: debts.length,
+      debtFreeIn, debtFreeDate,
+      interestSaved: this.fmtC(interestSaved),
+      // Invest
+      monthly, rate, years,
+      totalFormatted: this.fmt(total),
+      depositedFormatted: this.fmt(deposited),
+      earningsFormatted: this.fmt(earnings),
+      earningsPct: pct,
+      milestones,
+      setMonthly: (e) => this.setState({ monthly: +e.target.value }),
+      setRate: (e) => this.setState({ rate: +e.target.value }),
+      setYears: (e) => this.setState({ years: +e.target.value }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

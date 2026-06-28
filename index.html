@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Bible Knew First. | Ilana Horta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#13120E;color:#F0EBE1;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:64px;background:rgba(19,18,14,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:22px;color:#F0EBE1;}.nav-logo em{color:#C9A227;}
+.nav-links{display:flex;align-items:center;gap:36px;}.nav-links a{font:400 14px/1 'Inter',sans-serif;color:rgba(240,235,225,.6);transition:color .18s;}.nav-links a:hover{color:#F0EBE1;}
+.nav-btn{background:#C9A227;color:#13120E!important;font:600 14px/1 'Inter',sans-serif!important;padding:10px 22px;border-radius:4px;white-space:nowrap;}
+
+/* S1 HERO */
+.hero{margin-top:64px;position:relative;min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 52px;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('bible-key-hero.jpg') center center/cover no-repeat;filter:brightness(.42);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(19,18,14,.15) 0%,rgba(19,18,14,.5) 100%);}
+.hero-inner{position:relative;z-index:2;max-width:920px;}
+.h-eye{display:flex;align-items:center;justify-content:center;gap:14px;font:500 11px/1 'Inter',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#C9A227;margin-bottom:30px;}
+.h-eye::before,.h-eye::after{content:'';width:48px;height:1px;background:rgba(201,162,39,.5);}
+.h-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(54px,8vw,104px);line-height:.97;color:#F0EBE1;margin-bottom:22px;}
+.h-title em{color:#C9A227;font-style:italic;}
+.h-sub1{font:400 20px/1.5 'Inter',sans-serif;color:rgba(240,235,225,.9);margin-bottom:10px;}
+.h-sub2{font:300 17px/1.65 'Inter',sans-serif;color:rgba(240,235,225,.6);max-width:680px;margin:0 auto 38px;}
+.h-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;}
+.h-btn-g{background:#C9A227;color:#13120E;font:600 14px/1 'Inter',sans-serif;padding:14px 26px;border-radius:4px;}
+.h-btn-o{border:1px solid rgba(240,235,225,.3);color:#F0EBE1;font:400 14px/1 'Inter',sans-serif;padding:13px 26px;border-radius:4px;}
+.h-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;color:rgba(240,235,225,.5);display:flex;align-items:center;gap:14px;}
+.h-tag em{color:#C9A227;font-style:italic;}
+.h-tag::before,.h-tag::after{content:'';flex:1;max-width:70px;height:1px;background:rgba(201,162,39,.25);}
+
+/* S2 WHAT NO ONE TAUGHT YOU */
+.s2{padding:108px 52px;text-align:center;background:#13120E;}
+.s2-eye{font:500 11px/1 'Inter',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#C9A227;margin-bottom:28px;}
+.s2-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(36px,4.5vw,62px);line-height:1.07;color:#F0EBE1;max-width:880px;margin:0 auto 30px;}
+.s2-title em{color:#C9A227;font-style:italic;}
+.s2-body{font:300 18px/1.72 'Inter',sans-serif;color:rgba(240,235,225,.55);max-width:640px;margin:0 auto 14px;}
+.s2-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.5vw,28px);line-height:1.4;color:rgba(240,235,225,.7);max-width:720px;margin:40px auto 14px;}
+.s2-ref{font:500 10px/1 'Inter',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#C9A227;}
+
+/* S3 ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;background:#0D0C09;}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.about-text{padding:72px 64px;display:flex;flex-direction:column;justify-content:center;}
+.a-eye{font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A227;margin-bottom:18px;}
+.a-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(30px,3vw,46px);line-height:1.1;color:#F0EBE1;margin-bottom:20px;}
+.a-body{font:300 16px/1.75 'Inter',sans-serif;color:rgba(240,235,225,.6);margin-bottom:30px;}
+.a-body strong{color:#F0EBE1;font-weight:500;}
+.a-creds{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.08);margin-bottom:28px;}
+.a-cred{padding:20px 0;}.a-cred:first-child{padding-right:24px;border-right:1px solid rgba(255,255,255,.08);}
+.a-cred:last-child{padding-left:24px;}
+.a-clbl{font:500 9px/1 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,235,225,.3);margin-bottom:8px;}
+.a-cval{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:19px;color:#F0EBE1;}
+.btn-ol{display:inline-block;border:1px solid rgba(201,162,39,.4);color:#C9A227;font:500 13px/1 'Inter',sans-serif;padding:12px 22px;border-radius:4px;}
+
+/* S4 TOOLS */
+.tools{padding:96px 52px;background:#13120E;text-align:center;}
+.sec-eye{font:500 11px/1 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,235,225,.3);margin-bottom:12px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,3.5vw,54px);line-height:1.1;color:#F0EBE1;margin-bottom:10px;}
+.sec-sub{font:300 17px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.45);max-width:520px;margin:0 auto 48px;}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:1100px;margin:0 auto;}
+.tc{border:1px solid rgba(255,255,255,.08);padding:40px 32px;text-align:left;background:#0D0C09;display:block;}
+.tc.gold{background:#C9A227;border-color:#C9A227;}
+.tc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.tc-num{font:500 10px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,225,.35);}
+.tc.gold .tc-num{color:rgba(19,18,14,.5);}
+.tc-badge{font:600 9px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;background:rgba(201,162,39,.15);color:#C9A227;padding:4px 8px;border-radius:2px;}
+.tc.gold .tc-badge{background:rgba(19,18,14,.18);color:#13120E;}
+.tc-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;line-height:1.15;color:#F0EBE1;margin-bottom:14px;}
+.tc.gold .tc-title{color:#13120E;}
+.tc-desc{font:300 14px/1.65 'Inter',sans-serif;color:rgba(240,235,225,.5);margin-bottom:28px;}
+.tc.gold .tc-desc{color:rgba(19,18,14,.6);}
+.tc-stats{display:flex;gap:24px;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.07);}
+.tc.gold .tc-stats{border-bottom-color:rgba(19,18,14,.12);}
+.tc-stat-val{font-family:'Cormorant Garamond',serif;font-size:28px;color:#F0EBE1;display:block;margin-bottom:3px;}
+.tc.gold .tc-stat-val{color:#13120E;}
+.tc-stat-lbl{font:400 9px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,235,225,.3);}
+.tc.gold .tc-stat-lbl{color:rgba(19,18,14,.45);}
+.tc-cta{display:inline-block;border:1px solid rgba(201,162,39,.4);color:#C9A227;font:500 13px/1 'Inter',sans-serif;padding:11px 20px;border-radius:4px;}
+.tc.gold .tc-cta{background:#13120E;border-color:#13120E;color:#C9A227;}
+
+/* S5 13 PRINCIPLES */
+.principles{padding:96px 52px;background:#0D0C09;}
+.pr-header{text-align:center;margin-bottom:52px;}
+.pr-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(30px,3.5vw,50px);line-height:1.1;color:#F0EBE1;margin-bottom:10px;}
+.pr-title em{color:#C9A227;font-style:italic;}
+.pr-sub{font:300 16px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.45);max-width:560px;margin:0 auto;}
+.pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;max-width:1100px;margin:0 auto;}
+.pr-item{padding:28px 28px;border:1px solid rgba(255,255,255,.05);}
+.pr-num{font:500 11px/1 'Inter',sans-serif;color:#C9A227;margin-bottom:12px;}
+.pr-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:#F0EBE1;margin-bottom:8px;}
+.pr-desc{font:300 13px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.45);margin-bottom:10px;}
+.pr-ref{font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C9A227;opacity:.6;}
+
+/* S6 TIMELINE */
+.timeline{padding:96px 52px;background:#13120E;text-align:center;}
+.tl-eye{font:500 11px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.3);margin-bottom:14px;}
+.tl-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(30px,3.5vw,50px);line-height:1.1;color:#F0EBE1;max-width:700px;margin:0 auto 14px;}
+.tl-title em{color:#C9A227;font-style:italic;}
+.tl-sub{font:300 17px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.45);max-width:540px;margin:0 auto 48px;}
+.tl-table{max-width:980px;margin:0 auto 48px;border:1px solid rgba(255,255,255,.07);}
+.tl-head,.tl-row{display:grid;grid-template-columns:2fr 1fr 1.2fr .8fr;padding:13px 22px;gap:12px;}
+.tl-head{background:#0D0C09;}
+.tl-head span{font:500 9px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,235,225,.25);}
+.tl-row{border-top:1px solid rgba(255,255,255,.04);}
+.tl-row:nth-child(even){background:rgba(255,255,255,.02);}
+.tl-p{font:400 14px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.75);}
+.tl-d{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.4);}
+.tl-g{font:600 13px/1 'Cormorant Garamond',serif;color:#C9A227;text-align:right;}
+.tl-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:rgba(240,235,225,.55);max-width:640px;margin:0 auto;}
+.tl-by{font:400 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.25);margin-top:10px;}
+
+/* S7 TESTIMONIALS */
+.testimonials{padding:96px 52px;background:#0D0C09;text-align:center;}
+.test-eye{font:500 11px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.3);margin-bottom:14px;}
+.test-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(28px,3.5vw,46px);line-height:1.1;color:#F0EBE1;margin-bottom:48px;}
+.test-title em{color:#C9A227;font-style:italic;}
+.test-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:900px;margin:0 auto;}
+.test-card{background:#13120E;border:1px solid rgba(255,255,255,.06);padding:32px 28px;text-align:left;}
+.test-card.highlight{border-top:2px solid #C9A227;}
+.test-mark{font-family:'Cormorant Garamond',serif;font-size:36px;color:#C9A227;line-height:.6;margin-bottom:16px;opacity:.6;}
+.test-body{font:300 16px/1.65 'Inter',sans-serif;color:rgba(240,235,225,.65);margin-bottom:22px;}
+.test-author{display:flex;align-items:center;gap:10px;}
+.test-dot{width:22px;height:22px;border-radius:50%;background:rgba(201,162,39,.2);border:1px solid rgba(201,162,39,.3);display:flex;align-items:center;justify-content:center;}
+.test-dot-inner{width:6px;height:6px;border-radius:50%;background:#C9A227;}
+.test-name{font:400 13px/1 'Inter',sans-serif;color:rgba(240,235,225,.4);}
+
+/* S7 CONTACT */
+.contact{padding:96px 52px;background:#0D0C09;}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1000px;margin:0 auto;align-items:start;}
+.contact-left .c-eye{font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A227;margin-bottom:18px;}
+.contact-left .c-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,3vw,48px);line-height:1.1;color:#F0EBE1;margin-bottom:18px;}
+.contact-left .c-title em{color:#C9A227;font-style:italic;}
+.contact-left .c-body{font:300 16px/1.7 'Inter',sans-serif;color:rgba(240,235,225,.5);margin-bottom:28px;}
+.contact-left .c-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(240,235,225,.55);margin-bottom:6px;}
+.contact-left .c-ref{font:500 9px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C9A227;opacity:.6;}
+.contact-form{background:#13120E;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:32px;}
+.cf-field{margin-bottom:12px;}
+.cf-field input,.cf-field textarea{width:100%;background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:3px;padding:13px 16px;font:300 15px/1 'Inter',sans-serif;color:#F0EBE1;outline:none;transition:border-color .18s;}
+.cf-field input:focus,.cf-field textarea:focus{border-color:rgba(201,162,39,.4);}
+.cf-field input::placeholder,.cf-field textarea::placeholder{color:rgba(240,235,225,.25);}
+.cf-field textarea{height:100px;resize:vertical;line-height:1.5;}
+.cf-submit{width:100%;background:#C9A227;color:#13120E;font:600 14px/1 'Inter',sans-serif;padding:15px;border:none;border-radius:4px;cursor:pointer;margin-top:4px;}
+.cf-note{font:300 11px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.2);text-align:center;margin-top:10px;}
+
+/* FOOTER */
+footer{background:#0A0908;padding:30px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.04);}
+.f-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#C9A227;}
+.f-copy{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.2);}
+.f-ig{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.3);}
+
+@media(max-width:900px){nav{padding:0 24px;}.about{grid-template-columns:1fr;}.about-photo{height:440px;}.about-text,.s2,.tools,.timeline,.testimonials{padding:72px 24px;}.contact{padding:72px 24px;}.contact-inner{grid-template-columns:1fr;gap:48px;}.tools-grid{grid-template-columns:1fr;}.pr-grid{grid-template-columns:1fr;}.test-grid{grid-template-columns:1fr;}footer{flex-direction:column;gap:12px;text-align:center;padding:28px;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">The Bible <em>Knew First.</em></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="thebibleknewfirst-quiz.dc.html">Quiz</a>
+    <a href="thebibleknewfirst-calculator.dc.html">Calculator</a>
+    <a href="thebibleknewfirst-budget.dc.html">Budget</a>
+    <a href="#contact" class="nav-btn">Start now — it's free</a>
+  </div>
+</nav>
+
+<!-- S1: HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="h-eye">Financial Education · Biblical Wisdom</div>
+    <h1 class="h-title">The Bible <em>Knew First.</em></h1>
+    <p class="h-sub1">The world's greatest financial school was written 3,000 years ago.</p>
+    <p class="h-sub2">13 practical principles that transform your relationship with money — and were in Scripture all along. For believers and non-believers who want real results.</p>
+    <div class="h-btns">
+      <a href="thebibleknewfirst-quiz.dc.html" class="h-btn-g">Discover my financial profile →</a>
+      <a href="thebibleknewfirst-calculator.dc.html" class="h-btn-o">Calculate my freedom →</a>
+      <a href="thebibleknewfirst-budget.dc.html" class="h-btn-o">Build my budget →</a>
+    </div>
+    <div class="h-tag">The <em>key</em> to freedom was always in Scripture.</div>
+  </div>
+</section>
+
+<!-- S2: WHAT NO ONE TAUGHT YOU -->
+<section class="s2">
+  <div class="s2-eye">What No One Ever Taught You</div>
+  <h2 class="s2-title">It's not lack of effort. It's lack of a <em>wisdom that has existed for millennia.</em></h2>
+  <p class="s2-body">Nobody taught you how to manage money in school. Nobody told you the Bible already had a complete financial system — practical, tested, and accessible to anyone, believer or not.</p>
+  <p class="s2-body">Debt, a salary that disappears, the feeling of always running behind — these are symptoms of a root problem. And the solution was already written.</p>
+  <p class="s2-quote">"Train up a child in the way he should go; even when he is old he will not depart from it."</p>
+  <div class="s2-ref">Proverbs 22:6</div>
+</section>
+
+<!-- S3: ABOUT -->
+<section class="about" id="about">
+  <div class="about-photo"><img src="ilana-site.jpg" alt="Ilana Horta"></div>
+  <div class="about-text">
+    <div class="a-eye">About Ilana Horta</div>
+    <h2 class="a-title">From the world's elite boardrooms to the wisdom of Scripture.</h2>
+    <p class="a-body">Ilana Horta brings deep expertise and years of experience in entrepreneurship, company valuation, and finance at organizations like <strong>Deloitte, GE, Uber and Google</strong>. Today, she combines that rigor with practical, tested biblical principles — leading from debt to financial freedom with wisdom, discipline, and faith.</p>
+    <div class="a-creds">
+      <div class="a-cred"><div class="a-clbl">Experience</div><div class="a-cval">Deloitte · GE · Uber · Google</div></div>
+      <div class="a-cred"><div class="a-clbl">Education</div><div class="a-cval">UFMG · IBMEC · MIT</div></div>
+    </div>
+    <a href="#contact" class="btn-ol">Talk to Ilana →</a>
+  </div>
+</section>
+
+<!-- S4: TOOLS -->
+<section class="tools" id="tools">
+  <div class="sec-eye">Three Free Tools</div>
+  <h2 class="sec-title">Test Yourself.</h2>
+  <p class="sec-sub">Three practical, free tools based on the 13 biblical principles. Start now, no sign-up required.</p>
+  <div class="tools-grid">
+    <a href="thebibleknewfirst-quiz.dc.html" class="tc">
+      <div class="tc-head"><span class="tc-num">01 · DIAGNOSTIC</span><span class="tc-badge">FREE</span></div>
+      <div class="tc-title">What is your financial profile?</div>
+      <div class="tc-desc">5 minutes. 13 biblical principles. An honest assessment — and the exact next step you need to take. Free, no sign-up.</div>
+      <div class="tc-stats">
+        <div><span class="tc-stat-val">5</span><span class="tc-stat-lbl">Minutes</span></div>
+        <div><span class="tc-stat-val">4</span><span class="tc-stat-lbl">Profiles</span></div>
+        <div><span class="tc-stat-val">13</span><span class="tc-stat-lbl">Principles</span></div>
+      </div>
+      <div class="tc-cta">Discover my profile →</div>
+    </a>
+    <a href="thebibleknewfirst-calculator.dc.html" class="tc gold">
+      <div class="tc-head"><span class="tc-num">02 · CALCULATOR</span><span class="tc-badge">FREE</span></div>
+      <div class="tc-title">When will you be free?</div>
+      <div class="tc-desc">Enter your debts and see — in seconds — the exact date you'll reach financial freedom. No sign-up.</div>
+      <div class="tc-stats">
+        <div><span class="tc-stat-val">∞</span><span class="tc-stat-lbl">Scenarios</span></div>
+        <div><span class="tc-stat-val">2</span><span class="tc-stat-lbl">Strategies</span></div>
+        <div><span class="tc-stat-val">0</span><span class="tc-stat-lbl">Sign-up</span></div>
+      </div>
+      <div class="tc-cta">Open the calculator →</div>
+    </a>
+    <a href="thebibleknewfirst-budget.dc.html" class="tc">
+      <div class="tc-head"><span class="tc-num">03 · BUDGET</span><span class="tc-badge">FREE</span></div>
+      <div class="tc-title">Build your family budget.</div>
+      <div class="tc-desc">Based on the 13 biblical principles. Enter your income and expenses — the budget calculates everything and shows if you're on track.</div>
+      <div class="tc-stats">
+        <div><span class="tc-stat-val">10</span><span class="tc-stat-lbl">Categories</span></div>
+        <div><span class="tc-stat-val">3</span><span class="tc-stat-lbl">Pillars</span></div>
+        <div><span class="tc-stat-val">0</span><span class="tc-stat-lbl">Sign-up</span></div>
+      </div>
+      <div class="tc-cta">Build my budget →</div>
+    </a>
+  </div>
+</section>
+
+<!-- S5: 13 PRINCIPLES -->
+<section class="principles">
+  <div class="pr-header">
+    <h2 class="pr-title">13 Principles <em>that will transform your relationship with money</em></h2>
+    <p class="pr-sub">Each one is practical, tested, and applicable today — regardless of your faith. And all of them were in Scripture all along.</p>
+  </div>
+  <div class="pr-grid">
+    <div class="pr-item"><div class="pr-num">01</div><div class="pr-name">Spiritual Map</div><div class="pr-desc">Your bank statement doesn't lie. It is the most honest portrait of your real values — before any change, you need to look.</div><div class="pr-ref">Matthew 6:21</div></div>
+    <div class="pr-item"><div class="pr-num">02</div><div class="pr-name">God's Only Rival</div><div class="pr-desc">Money is the only rival Jesus named for God. When it becomes master, you lose peace, clarity, and what truly matters.</div><div class="pr-ref">Matthew 6:24</div></div>
+    <div class="pr-item"><div class="pr-num">03</div><div class="pr-name">Pay First</div><div class="pr-desc">The oldest financial strategy in the world: set aside first — before spending. It's what survives. The Bible knew it first.</div><div class="pr-ref">Gen 14:20 · Mal 3:10</div></div>
+    <div class="pr-item"><div class="pr-num">04</div><div class="pr-name">The Ant</div><div class="pr-desc">The ant has no boss or obligation — yet saves during abundance. Emergency fund and habit that becomes automatic.</div><div class="pr-ref">Proverbs 6:6–8</div></div>
+    <div class="pr-item"><div class="pr-num">05</div><div class="pr-name">Count the Cost Before You Build</div><div class="pr-desc">Jesus asked: did you count the cost before starting? Planning is not distrust in God. It is wisdom.</div><div class="pr-ref">Luke 14:28–30</div></div>
+    <div class="pr-item"><div class="pr-num">06</div><div class="pr-name">Slave to the Lender</div><div class="pr-desc">The rich rules over the poor, and the borrower is slave to the lender. Debt is not just financial — it is a power relationship that drains your freedom.</div><div class="pr-ref">Proverbs 22:7</div></div>
+    <div class="pr-item"><div class="pr-num">07</div><div class="pr-name">The Servant Punished for Hoarding</div><div class="pr-desc">The only servant punished in the Parable of the Talents was the one who buried it. God does not reward those who hoard what they receive.</div><div class="pr-ref">Matthew 25:14–30</div></div>
+    <div class="pr-item"><div class="pr-num">08</div><div class="pr-name">Divide Into Seven Parts</div><div class="pr-desc">Solomon described portfolio diversification 2,900 years before the Nobel of 1990. Don't put everything in one place.</div><div class="pr-ref">Ecclesiastes 11:2</div></div>
+    <div class="pr-item"><div class="pr-num">09</div><div class="pr-name">The 14-Year Plan</div><div class="pr-desc">Joseph created the first retirement plan in history. He saved 20% for 7 years of abundance to survive 7 of scarcity. The Bible already knew.</div><div class="pr-ref">Genesis 41</div></div>
+    <div class="pr-item"><div class="pr-num">10</div><div class="pr-name">The Hidden Entrepreneur</div><div class="pr-desc">The woman of Proverbs 31 buys fields, analyzes them, sells with profit, and runs a business. The Bible celebrates female entrepreneurship 3,000 years ago.</div><div class="pr-ref">Proverbs 31</div></div>
+    <div class="pr-item"><div class="pr-num">11</div><div class="pr-name">Whoever Sows Generously</div><div class="pr-desc">Strategic generosity doesn't impoverish — it multiplies. Science confirmed 2,000 years after Paul wrote: whoever sows little, little reaps.</div><div class="pr-ref">2 Corinthians 9:6</div></div>
+    <div class="pr-item"><div class="pr-num">12</div><div class="pr-name">Inheritance and Legacy</div><div class="pr-desc">Inheritance is money. Legacy is character. The good person leaves both — and the Bible treats this as responsibility, not optional.</div><div class="pr-ref">Proverbs 13:22</div></div>
+    <div class="pr-item"><div class="pr-num">13</div><div class="pr-name">Content to Be</div><div class="pr-desc">Paul learned to be content in any situation. Contentment is not resignation — it is the psychological foundation of every healthy financial decision.</div><div class="pr-ref">Philippians 4:11</div></div>
+  </div>
+</section>
+
+<!-- S6: TIMELINE -->
+<section class="timeline">
+  <div class="tl-eye">The Fact That Will Surprise You</div>
+  <h2 class="tl-title">The Bible anticipated modern financial science by an average of <em>2,800 years.</em></h2>
+  <p class="tl-sub">What Harvard, Nobel laureates, and the world's greatest financial experts teach today — was already written in Scripture millennia ago. Not as metaphor. As practical principle.</p>
+  <div class="tl-table">
+    <div class="tl-head"><span>Principle</span><span>Bible Wrote It</span><span>Science Discovered</span><span style="text-align:right">Gap</span></div>
+    <div class="tl-row"><span class="tl-p">Pay Yourself First</span><span class="tl-d">Gen 14:20 · ~2000 BC</span><span class="tl-d">George Clason, 1926</span><span class="tl-g">3,900 yrs</span></div>
+    <div class="tl-row"><span class="tl-p">Emergency Fund</span><span class="tl-d">Prov 6:6–8 · ~900 BC</span><span class="tl-d">Modern finance, 20th c.</span><span class="tl-g">2,800 yrs</span></div>
+    <div class="tl-row"><span class="tl-p">Regular Contributions (DCA)</span><span class="tl-d">Prov 13:11 · ~900 BC</span><span class="tl-d">Benjamin Graham, 1949</span><span class="tl-g">2,850 yrs</span></div>
+    <div class="tl-row"><span class="tl-p">Diversification</span><span class="tl-d">Eccl 11:2 · ~900 BC</span><span class="tl-d">Markowitz, Nobel 1990</span><span class="tl-g">2,850 yrs</span></div>
+    <div class="tl-row"><span class="tl-p">Retirement Planning</span><span class="tl-d">Gen 41 · ~1700 BC</span><span class="tl-d">ERISA (US), 1974</span><span class="tl-g">3,670 yrs</span></div>
+    <div class="tl-row"><span class="tl-p">Financial Psychology</span><span class="tl-d">Matt 6:21 · ~AD 30</span><span class="tl-d">Thaler, Nobel 2017</span><span class="tl-g">2,000 yrs</span></div>
+    <div class="tl-row"><span class="tl-p">Compound Interest</span><span class="tl-d">Matt 25:27 · ~AD 30</span><span class="tl-d">Bernoulli, 1683</span><span class="tl-g">1,650 yrs</span></div>
+    <div class="tl-row"><span class="tl-p">Strategic Generosity</span><span class="tl-d">2 Cor 9:6 · ~AD 55</span><span class="tl-d">Brooks, 2006</span><span class="tl-g">1,950 yrs</span></div>
+  </div>
+  <p class="tl-quote">"You had the most complete financial manual ever written. You just didn't know that's what it was."</p>
+  <p class="tl-by">Ilana Horta · The Bible Knew First</p>
+</section>
+
+<!-- S7: TESTIMONIALS -->
+<section class="testimonials">
+  <div class="test-eye">Real Results</div>
+  <h2 class="test-title">What those who <em>applied the principles</em> say</h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-mark">"</div>
+      <p class="test-body">From today on, I no longer use my credit card.</p>
+      <div class="test-author"><div class="test-dot"><div class="test-dot-inner"></div></div><span class="test-name">Workshop participant</span></div>
+    </div>
+    <div class="test-card highlight">
+      <div class="test-mark">"</div>
+      <p class="test-body">A week later I was already writing down every expense and income in a notebook.</p>
+      <div class="test-author"><div class="test-dot"><div class="test-dot-inner"></div></div><span class="test-name">Workshop participant</span></div>
+    </div>
+    <div class="test-card">
+      <div class="test-mark">"</div>
+      <p class="test-body">I asked for suggestions to move out of regular savings. Never again.</p>
+      <div class="test-author"><div class="test-dot"><div class="test-dot-inner"></div></div><span class="test-name">Workshop participant</span></div>
+    </div>
+    <div class="test-card">
+      <div class="test-mark">"</div>
+      <p class="test-body">I was shocked... I need to watch this again.</p>
+      <div class="test-author"><div class="test-dot"><div class="test-dot-inner"></div></div><span class="test-name">Workshop participant</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- S7: CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="c-eye">Talk to Ilana</div>
+      <h2 class="c-title">Take the first <em>step</em></h2>
+      <p class="c-body">Share your details and we'll get in touch personally. Every conversation starts where you are — no judgment, with purpose.</p>
+      <p class="c-quote">"The Lord is my shepherd, I lack nothing."</p>
+      <div class="c-ref">Psalm 23:1</div>
+    </div>
+    <div class="contact-form">
+      <div class="cf-field"><input type="text" placeholder="Full name"></div>
+      <div class="cf-field"><input type="email" placeholder="E-mail"></div>
+      <div class="cf-field"><input type="tel" placeholder="WhatsApp (optional)"></div>
+      <div class="cf-field"><textarea placeholder="Message (optional)"></textarea></div>
+      <button class="cf-submit">Send message →</button>
+      <p class="cf-note">Your data is treated with respect and privacy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">The Bible Knew First.</div>
+  <div class="f-copy">© 2026 Ilana Horta · All rights reserved · ilana@openbiblia.com</div>
+  <div class="f-ig"><a href="https://instagram.com/ilanahorta" style="color:inherit;">@ilanahorta ↗</a></div>
+</footer>
+
+</body>
+</html>

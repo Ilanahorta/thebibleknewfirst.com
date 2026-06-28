@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#13120E;color:#F0EBE1;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:64px;background:rgba(19,18,14,.96);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:22px;color:#F0EBE1;}
+.nav-logo em{color:#C9A227;}
+.nav-back{font:400 13px/1 'Inter',sans-serif;color:rgba(240,235,225,.45);transition:color .18s;}
+.nav-back:hover{color:#F0EBE1;}
+.hero{padding:72px 52px 48px;text-align:center;background:#0D0C09;}
+.eyebrow{font:500 11px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A227;margin-bottom:16px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(36px,4vw,54px);line-height:1.1;color:#F0EBE1;margin-bottom:12px;}
+.hero p{font:300 17px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.5);max-width:500px;margin:0 auto;}
+.shell{max-width:620px;margin:0 auto;padding:0 40px 100px;}
+.prog-lbl{font:500 10px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,235,225,.25);margin-bottom:8px;}
+.prog-bar{background:#1C1814;border-radius:4px;height:2px;margin-bottom:36px;overflow:hidden;}
+.prog-fill{height:100%;background:#C9A227;border-radius:4px;transition:width .4s ease;}
+.q-card{margin-bottom:4px;}
+.q-num{font:500 10px/1 'Inter',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#C9A227;margin-bottom:14px;}
+.q-text{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;line-height:1.28;color:#F0EBE1;margin-bottom:24px;}
+.options{display:flex;flex-direction:column;gap:8px;}
+.opt{background:#0D0C09;border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:14px 18px;font:300 15px/1.5 'Inter',sans-serif;color:rgba(240,235,225,.65);cursor:pointer;transition:all .15s;text-align:left;width:100%;}
+.opt:hover{border-color:rgba(201,162,39,.4);color:#F0EBE1;}
+.opt.sel{border-color:#C9A227;background:rgba(201,162,39,.08);color:#F0EBE1;}
+.nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:10px;}
+.btn-back{background:transparent;border:1px solid rgba(255,255,255,.08);color:rgba(240,235,225,.45);font:500 11px/1 'Inter',sans-serif;letter-spacing:.12em;padding:12px 22px;border-radius:4px;cursor:pointer;transition:all .18s;}
+.btn-back:hover{border-color:rgba(255,255,255,.2);color:#F0EBE1;}
+.btn-next{background:#C9A227;color:#13120E;font:600 11px/1 'Inter',sans-serif;letter-spacing:.12em;padding:13px 26px;border:none;border-radius:4px;cursor:pointer;transition:all .18s;margin-left:auto;}
+.btn-next:hover{background:#DDB52E;}
+.btn-next.dim{opacity:.3;cursor:not-allowed;}
+.result{text-align:center;padding:20px 0;}
+.res-label{font:500 11px/1 'Inter',sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#C9A227;margin-bottom:14px;}
+.res-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:42px;color:#F0EBE1;margin-bottom:16px;}
+.res-desc{font:300 16px/1.72 'Inter',sans-serif;color:rgba(240,235,225,.55);max-width:500px;margin:0 auto 28px;}
+.steps{display:flex;flex-direction:column;gap:10px;text-align:left;margin:0 0 28px;}
+.step{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:14px 18px;display:flex;gap:14px;}
+.step-n{font:600 12px/1 'Inter',sans-serif;color:#C9A227;flex:none;padding-top:2px;}
+.step-body{font:300 14px/1.55 'Inter',sans-serif;color:rgba(240,235,225,.7);}
+.cta-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.btn-gold{background:#C9A227;color:#13120E;font:600 12px/1 'Inter',sans-serif;letter-spacing:.06em;padding:14px 24px;border-radius:4px;display:inline-block;}
+.btn-ol{border:1px solid rgba(201,162,39,.35);color:#C9A227;font:500 12px/1 'Inter',sans-serif;letter-spacing:.06em;padding:13px 24px;border-radius:4px;display:inline-block;}
+.spacer{height:24px;}
+</style>
+</helmet>
+
+<nav>
+  <a href="thebibleknewfirst-index.html" class="nav-logo">The Bible <em>Knew First.</em></a>
+  <a href="thebibleknewfirst-index.html" class="nav-back">← Home</a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Free Diagnostic · No Sign-Up · Instant Result</div>
+  <h1>What Is Your Financial Profile?</h1>
+  <p>13 questions based on biblical principles. Find out where you are — and what to do to get where you want to be.</p>
+</div>
+
+<div class="shell" style="padding-top:48px;">
+  <sc-if value="{{ showQuestion }}" hint-placeholder-val="{{ true }}">
+    <div class="prog-lbl">Question {{ currentQ }} of 13</div>
+    <div class="prog-bar"><div class="prog-fill" style="width:{{ pct }}%"></div></div>
+    <div class="q-card">
+      <div class="q-num">{{ currentQ }} / 13</div>
+      <div class="q-text">{{ qText }}</div>
+      <div class="options">
+        <sc-for list="{{ opts }}" as="o" hint-placeholder-count="4">
+          <button class="opt {{ o.cls }}" onClick="{{ o.pick }}">{{ o.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div class="nav-btns">
+      <sc-if value="{{ showBack }}" hint-placeholder-val="{{ false }}">
+        <button class="btn-back" onClick="{{ back }}">← Back</button>
+      </sc-if>
+      <button class="btn-next {{ nextCls }}" onClick="{{ next }}">{{ nextLabel }}</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showResult }}" hint-placeholder-val="{{ false }}">
+    <div class="result">
+      <div class="res-label">Your Profile</div>
+      <div class="res-title">{{ resTitle }}</div>
+      <div class="res-desc">{{ resDesc }}</div>
+      <div class="steps">
+        <sc-for list="{{ resSteps }}" as="s" hint-placeholder-count="3">
+          <div class="step">
+            <div class="step-n">{{ s.n }}</div>
+            <div class="step-body"><strong style="color:#F0EBE1;">{{ s.title }}</strong> — {{ s.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div class="cta-row">
+        <a href="thebibleknewfirst-calculator.dc.html" class="btn-gold">Calculate My Freedom →</a>
+        <a href="thebibleknewfirst-index.html#contact" class="btn-ol">Talk to Ilana</a>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn-back" onClick="{{ restart }}" style="margin:0 auto;display:block;">Retake the Quiz</button>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { q: 0, answers: {}, done: false };
+
+  Qs() {
+    return [
+      { t: "When you look at last month's bank statement, what is your first feeling?", o: ["Curiosity — I know exactly what happened","Mild anxiety — I prefer not to look","Fear — the numbers don't make sense","Relief — I always have a plan"] },
+      { t: "Do you have an emergency fund covering 3–6 months of expenses?", o: ["Yes, fully funded and untouched","Partial — about 1–2 months","No, but I'm actively building it","No — I'm not sure where to start"] },
+      { t: "How do you handle consumer debt (credit cards, personal loans)?", o: ["I have none — I pay in full monthly","I have some but I'm paying it down","I pay minimums — balance hasn't changed","It feels like it's growing, not shrinking"] },
+      { t: "When it comes to investing, which best describes you?", o: ["I invest a fixed amount every month","I invest occasionally when I have extra","I've thought about it but haven't started","The word 'invest' feels out of reach right now"] },
+      { t: "Do you have a written monthly budget?", o: ["Yes — and I follow it closely","Yes — but I often go over in some areas","In my head only, not written down","No budget — I figure it out as I go"] },
+      { t: "How much of your income do you save or invest monthly?", o: ["20% or more","10–19%","1–9%","Nothing consistently right now"] },
+      { t: "How do you feel about giving or tithing?", o: ["It's the first thing I set aside — before anything else","I give when I have extra","I want to but feel like I can't afford it yet","It's not a current priority"] },
+      { t: "If you lost your main income today, how long could you sustain your lifestyle?", o: ["6+ months without stress","3–5 months with some adjustments","1–2 months with real difficulty","Less than a month — it would be a crisis"] },
+      { t: "Are your investments diversified across different asset classes?", o: ["Yes — stocks, bonds, real estate, and more","Mostly one type (e.g., only stocks or savings)","I have one small investment","I don't have investments yet"] },
+      { t: "Do you have a retirement savings plan (401k, IRA, or equivalent)?", o: ["Yes, contributing regularly — capturing employer match","Yes, but contributing less than I should","I opened one but rarely contribute","No retirement savings yet"] },
+      { t: "How do you make major purchase decisions?", o: ["I calculate the full cost, wait, then decide","I research a while but sometimes act impulsively","If I can afford the monthly payment, I go for it","I often buy and regret it later"] },
+      { t: "Have you talked honestly about money with your spouse or partner?", o: ["Yes — we plan together regularly","Occasionally, but we avoid some topics","Rarely — it's a source of tension","I manage finances alone by preference"] },
+      { t: "Where do you want to be financially in 10 years?", o: ["Financially independent — working by choice, not necessity","Debt-free with strong savings","More stable than today — clear of immediate stress","I haven't thought that far ahead"] },
+    ];
+  }
+
+  score() {
+    return Object.values(this.state.answers).reduce((s, v) => s + (3 - v), 0);
+  }
+
+  getResult() {
+    const sc = this.score();
+    if (sc >= 28) return {
+      title: 'The Steward',
+      desc: 'You are already applying many biblical financial principles. Your habits show consistency, intentionality, and long-term thinking. The next step is optimization — refining your portfolio, increasing generosity, and building a multigenerational legacy.',
+      steps: [
+        { n: '1', title: 'Audit your diversification', text: 'Ecclesiastes 11:2 — divide into seven or eight parts. Ensure no single asset holds more than 20% of your net worth.' },
+        { n: '2', title: 'Formalize your giving percentage', text: '2 Corinthians 9:6 — whoever sows generously reaps generously. Automate your giving as a fixed percentage, not a remainder.' },
+        { n: '3', title: 'Write your Financial Legacy Letter', text: 'Proverbs 13:22 — a good person leaves an inheritance for their children\'s children. Document your 5 core money beliefs.' },
+      ]
+    };
+    if (sc >= 18) return {
+      title: 'The Builder',
+      desc: 'You have a real foundation — some savings, some awareness, some investing. But there are gaps quietly costing you. The next phase is closing them systematically and building with real intentionality.',
+      steps: [
+        { n: '1', title: 'Fund your emergency reserve fully', text: 'Proverbs 6:6–8 — the ant prepares in summer. Target 3–6 months of expenses in a separate, untouched account.' },
+        { n: '2', title: 'Automate your monthly investment', text: 'Matthew 25:27 — put the money to work. Set a fixed monthly transfer on payday. What is automatic happens; what depends on willpower fails.' },
+        { n: '3', title: 'Apply the 3-Pillar Budget', text: 'Luke 14:28 — count the cost before you build. 50% needs, 30% wants, 20% future. This week, map last month to those three buckets.' },
+      ]
+    };
+    if (sc >= 9) return {
+      title: 'The Awakening',
+      desc: 'You are aware that something needs to change — and awareness is the first and most important step. The principles you need are already written. Now is the time to apply them, one by one, from where you are.',
+      steps: [
+        { n: '1', title: 'Build your emergency fund first', text: 'Proverbs 6:6 — before investing, before anything: set aside $1,000 as your first emergency buffer. This single step changes how you handle every financial decision going forward.' },
+        { n: '2', title: 'List every debt you owe — today', text: 'Proverbs 22:7 — the borrower is slave to the lender. You cannot manage what you cannot see. Write every debt: creditor, amount, interest rate, minimum payment.' },
+        { n: '3', title: 'Open the Bible. Read Matthew 25:14–30', text: 'The Parable of the Talents. Jesus punished the servant who buried his money — not the one who risked it. Start small. Start now.' },
+      ]
+    };
+    return {
+      title: 'The Starting Line',
+      desc: 'You are at the beginning — and that is exactly where every transformation starts. The fact that you took this quiz means something has already shifted. The principles that will change everything are in the oldest book you own.',
+      steps: [
+        { n: '1', title: 'Save $50 this week — literally this week', text: 'Not next month. This week. Open a separate savings account and transfer $50. This is not about the amount. It is about the habit of setting aside before spending.' },
+        { n: '2', title: 'Read one chapter', text: 'Open the Bible to Matthew 6. Read it as a finance document. Every sentence is about money, priorities, and where you place your trust.' },
+        { n: '3', title: 'Come back in 30 days', text: 'Take this quiz again after 30 days of applying one principle. You will be surprised how fast the score — and your life — changes.' },
+      ]
+    };
+  }
+
+  renderVals() {
+    const { q, answers, done } = this.state;
+    const qs = this.Qs();
+    const cur = qs[q] || qs[0];
+    const hasAnswer = answers[q] !== undefined;
+    const res = done ? this.getResult() : null;
+
+    return {
+      showQuestion: !done,
+      showResult: done,
+      showBack: q > 0,
+      currentQ: q + 1,
+      pct: Math.round((q / 13) * 100),
+      qText: cur.t,
+      hasAnswer,
+      nextCls: hasAnswer ? '' : 'dim',
+      nextLabel: q >= 12 ? 'See My Profile →' : 'Next →',
+      opts: cur.o.map((label, i) => ({
+        label,
+        cls: answers[q] === i ? 'sel' : '',
+        pick: () => this.setState({ answers: { ...this.state.answers, [q]: i } }),
+      })),
+      next: () => {
+        if (this.state.answers[this.state.q] === undefined) return;
+        if (this.state.q >= 12) { this.setState({ done: true }); return; }
+        this.setState({ q: this.state.q + 1 });
+      },
+      back: () => this.setState({ q: Math.max(0, this.state.q - 1) }),
+      restart: () => this.setState({ q: 0, answers: {}, done: false }),
+      resTitle: res ? res.title : '',
+      resDesc: res ? res.desc : '',
+      resSteps: res ? res.steps : [],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

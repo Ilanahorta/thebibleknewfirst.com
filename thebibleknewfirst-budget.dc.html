@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#13120E;color:#F0EBE1;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(19,18,14,.96);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:22px;color:#C9A227;}
+.nav-back{font:400 13px/1 'Inter',sans-serif;color:rgba(240,235,225,.45);transition:color .2s;}
+.nav-back:hover{color:#F0EBE1;}
+.hero{padding:72px 48px 52px;text-align:center;background:#0D0C09;}
+.eyebrow{font:500 11px/1 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#C9A227;margin-bottom:16px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(36px,4vw,56px);line-height:1.08;color:#F0EBE1;margin-bottom:12px;}
+.hero p{font:300 17px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.5);max-width:520px;margin:0 auto;}
+.shell{max-width:860px;margin:0 auto;padding:56px 48px 100px;}
+
+/* Income input */
+.income-box{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px 28px;margin-bottom:40px;}
+.income-label{font:500 10px/1 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,235,225,.3);margin-bottom:12px;}
+.income-row{display:flex;align-items:center;gap:10px;}
+.income-prefix{font:300 28px/1 'Cormorant Garamond',serif;color:rgba(240,235,225,.4);}
+.income-input{flex:1;background:transparent;border:none;outline:none;font:600 36px/1 'Cormorant Garamond',serif;color:#F0EBE1;}
+
+/* Pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;}
+.pillar{border-radius:4px;overflow:hidden;}
+.pillar-head{padding:22px 22px 18px;position:relative;}
+.pillar-pct{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:48px;line-height:1;margin-bottom:4px;}
+.pillar-name{font:500 10px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;opacity:.7;}
+.pillar-amount{font-family:'Cormorant Garamond',serif;font-size:28px;opacity:.85;}
+.pillar-body{background:#0D0C09;padding:18px 22px;}
+.pillar-items{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.pillar-items li{font:300 13px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.45);padding-left:14px;position:relative;}
+.pillar-items li::before{content:'·';position:absolute;left:0;color:#C9A227;}
+
+/* Needs = deep dark gold bg */
+.pillar-needs .pillar-head{background:#1E1A10;}
+.pillar-needs .pillar-pct{color:#C9A227;}
+/* Wants = slightly lighter */
+.pillar-wants .pillar-head{background:#181814;}
+.pillar-wants .pillar-pct{color:rgba(240,235,225,.7);}
+/* Future */
+.pillar-future .pillar-head{background:#0F1510;}
+.pillar-future .pillar-pct{color:#6DA87A;}
+
+/* Sliders */
+.sliders{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px 28px;margin-bottom:28px;}
+.slider-row{display:flex;align-items:center;gap:16px;margin-bottom:14px;}
+.slider-row:last-child{margin-bottom:0;}
+.slider-label{font:500 10px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;width:80px;flex:none;color:rgba(240,235,225,.4);}
+.slider-track{flex:1;}
+.slider-track input[type=range]{width:100%;accent-color:#C9A227;height:3px;}
+.slider-val{font:600 14px/1 'Cormorant Garamond',serif;width:50px;text-align:right;color:#F0EBE1;}
+
+/* Bible box */
+.bible-box{background:#0D0C09;border-left:2px solid #C9A227;padding:18px 20px;border-radius:0 4px 4px 0;margin-bottom:28px;}
+.bible-ref{font:500 10px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C9A227;margin-bottom:8px;}
+.bible-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.5;color:rgba(240,235,225,.7);}
+
+/* Summary */
+.summary{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px 28px;}
+.summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.summary-row:last-child{border-bottom:none;padding-top:14px;margin-top:4px;}
+.summary-label{font:300 14px/1 'Inter',sans-serif;color:rgba(240,235,225,.5);}
+.summary-val{font-family:'Cormorant Garamond',serif;font-size:22px;color:#F0EBE1;}
+.summary-row.total .summary-label{font-weight:500;color:rgba(240,235,225,.8);}
+.summary-row.total .summary-val{color:#C9A227;font-size:28px;}
+.warning{color:#C96A5A!important;}
+
+.cta-row{display:flex;gap:10px;margin-top:24px;}
+.btn-gold{flex:1;background:#C9A227;color:#13120E;font:600 12px/1 'Inter',sans-serif;letter-spacing:.06em;padding:14px;border-radius:4px;text-align:center;display:block;}
+.btn-outline{flex:1;border:1px solid rgba(201,162,39,.35);color:#C9A227;font:500 12px/1 'Inter',sans-serif;letter-spacing:.06em;padding:13px;border-radius:4px;text-align:center;display:block;}
+@media(max-width:700px){.pillars{grid-template-columns:1fr;}.shell{padding:40px 24px 80px;}nav{padding:0 24px;}.hero{padding:56px 24px 40px;}}
+</style>
+</helmet>
+
+<nav>
+  <a href="thebibleknewfirst-index.html" class="nav-logo">The Bible <em style="color:#C9A227;font-style:italic;">Knew First.</em></a>
+  <a href="thebibleknewfirst-index.html" class="nav-back">← Home</a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Free Budget Builder · No Sign-Up</div>
+  <h1>Build My Budget</h1>
+  <p>The 3-Pillar Budget from Luke 14:28. Count the cost before you build — a biblical plan for where every dollar goes.</p>
+</div>
+
+<div class="shell">
+  <!-- Income -->
+  <div class="income-box">
+    <div class="income-label">Monthly Take-Home Income</div>
+    <div class="income-row">
+      <span class="income-prefix">$</span>
+      <input class="income-input" type="number" value="{{ income }}" onInput="{{ setIncome }}" placeholder="5000" min="0">
+    </div>
+  </div>
+
+  <!-- Pillar cards -->
+  <div class="pillars">
+    <div class="pillar pillar-needs">
+      <div class="pillar-head">
+        <div class="pillar-pct">{{ needsPct }}%</div>
+        <div class="pillar-name">Provision · Needs</div>
+        <div class="pillar-amount">${{ needsAmt }}</div>
+      </div>
+      <div class="pillar-body">
+        <ul class="pillar-items">
+          <li>Housing · Rent or mortgage</li>
+          <li>Food · Groceries &amp; essentials</li>
+          <li>Healthcare &amp; insurance</li>
+          <li>Essential transportation</li>
+          <li>Utilities &amp; education</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pillar pillar-wants">
+      <div class="pillar-head">
+        <div class="pillar-pct">{{ wantsPct }}%</div>
+        <div class="pillar-name">Freedom · Wants</div>
+        <div class="pillar-amount">${{ wantsAmt }}</div>
+      </div>
+      <div class="pillar-body">
+        <ul class="pillar-items">
+          <li>Dining out &amp; entertainment</li>
+          <li>Clothing &amp; accessories</li>
+          <li>Travel &amp; hobbies</li>
+          <li>Subscriptions &amp; streaming</li>
+          <li>Personal care &amp; leisure</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pillar pillar-future">
+      <div class="pillar-head">
+        <div class="pillar-pct">{{ futurePct }}%</div>
+        <div class="pillar-name">Future · Growth</div>
+        <div class="pillar-amount">${{ futureAmt }}</div>
+      </div>
+      <div class="pillar-body">
+        <ul class="pillar-items">
+          <li>Tithe &amp; giving — first</li>
+          <li>Emergency fund (3–6 months)</li>
+          <li>401(k), IRA, investments</li>
+          <li>Debt repayment (accelerated)</li>
+          <li>Long-term savings goals</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sliders -->
+  <div class="sliders">
+    <div class="slider-row">
+      <div class="slider-label">Needs</div>
+      <div class="slider-track"><input type="range" min="20" max="80" value="{{ needsPct }}" onInput="{{ setNeeds }}"></div>
+      <div class="slider-val">{{ needsPct }}%</div>
+    </div>
+    <div class="slider-row">
+      <div class="slider-label">Wants</div>
+      <div class="slider-track"><input type="range" min="5" max="50" value="{{ wantsPct }}" onInput="{{ setWants }}"></div>
+      <div class="slider-val">{{ wantsPct }}%</div>
+    </div>
+    <div class="slider-row">
+      <div class="slider-label">Future</div>
+      <div class="slider-track"><input type="range" min="5" max="50" value="{{ futurePct }}" onInput="{{ setFuture }}"></div>
+      <div class="slider-val">{{ futurePct }}%</div>
+    </div>
+  </div>
+
+  <div class="bible-box">
+    <div class="bible-ref">📖 Luke 14:28–30</div>
+    <div class="bible-q">"Suppose one of you wants to build a tower. Won't you first sit down and estimate the cost to see if you have enough money to complete it?"</div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <div class="summary-row">
+      <span class="summary-label">Monthly income</span>
+      <span class="summary-val">${{ income }}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-label">Provision ({{ needsPct }}%)</span>
+      <span class="summary-val">${{ needsAmt }}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-label">Freedom ({{ wantsPct }}%)</span>
+      <span class="summary-val">${{ wantsAmt }}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-label">Future ({{ futurePct }}%)</span>
+      <span class="summary-val" style="color:#6DA87A;">${{ futureAmt }}</span>
+    </div>
+    <div class="summary-row total">
+      <span class="summary-label">Allocated</span>
+      <span class="summary-val {{ overClass }}">${{ allocated }} / ${{ income }}</span>
+    </div>
+  </div>
+
+  <div class="cta-row" style="margin-top:24px;">
+    <a href="thebibleknewfirst-quiz.dc.html" class="btn-gold">Discover My Profile →</a>
+    <a href="thebibleknewfirst-index.dc.html#contact" class="btn-outline">Talk to Ilana</a>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { income: 5000, needs: 50, wants: 30, future: 20 };
+
+  fmt(n) { return Math.round(n).toLocaleString(); }
+
+  renderVals() {
+    const { income, needs, wants, future } = this.state;
+    const total = needs + wants + future;
+    const needsAmt = this.fmt(income * needs / 100);
+    const wantsAmt = this.fmt(income * wants / 100);
+    const futureAmt = this.fmt(income * future / 100);
+    const allocated = this.fmt(income * total / 100);
+    const isOver = total > 100;
+
+    return {
+      income: this.fmt(income),
+      needsPct: needs, wantsPct: wants, futurePct: future,
+      needsAmt, wantsAmt, futureAmt, allocated,
+      overClass: isOver ? 'warning' : '',
+      setIncome: (e) => this.setState({ income: +e.target.value || 0 }),
+      setNeeds: (e) => this.setState({ needs: +e.target.value }),
+      setWants: (e) => this.setState({ wants: +e.target.value }),
+      setFuture: (e) => this.setState({ future: +e.target.value }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>
