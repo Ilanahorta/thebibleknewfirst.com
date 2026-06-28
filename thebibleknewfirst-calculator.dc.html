@@ -40,16 +40,20 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px
 .field-prefix{font:300 22px/1 'Cormorant Garamond',serif;color:rgba(240,235,225,.8);}
 .field input[type=number]{flex:1;background:transparent;border:none;outline:none;font:600 31px/1 'Cormorant Garamond',serif;color:#F0EBE1;width:100%;}
 .field input[type=range]{width:100%;accent-color:#C9A227;margin-top:8px;height:2px;cursor:pointer;}
-.field-hint{font:300 12px/1.4 'Inter',sans-serif;color:rgba(240,235,225,.55);margin-top:7px;}
+.field-hint{font:300 15px/1.5 'Inter',sans-serif;color:#F0EBE1;margin-top:7px;}
 
 /* DEBT LIST */
 .debt-list{display:flex;flex-direction:column;gap:8px;}
-.debt-item{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:14px 16px;display:grid;grid-template-columns:1fr 1fr 1fr 28px;gap:10px;align-items:center;}
+.debt-item{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:14px 16px 8px;margin-bottom:8px;}
+.debt-inputs{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 28px;gap:8px;align-items:center;margin-bottom:6px;}
+.debt-info{font:300 11px/1.5 'Inter',sans-serif;padding:6px 0 2px;border-top:1px solid rgba(255,255,255,.05);}
+.debt-info-ok{color:rgba(100,200,120,.85);}
+.debt-info-warn{color:#E8A55A;}
 .debt-input{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.12);outline:none;font:300 14px/1 'Inter',sans-serif;color:#F0EBE1;padding:4px 0;width:100%;}
 .debt-input::placeholder{color:rgba(240,235,225,.22);}
 .debt-rm{background:none;border:none;color:rgba(240,235,225,.25);cursor:pointer;font-size:16px;padding:0;transition:color .15s;text-align:center;}
 .debt-rm:hover{color:#C96A5A;}
-.debt-head{display:grid;grid-template-columns:1fr 1fr 1fr 28px;gap:10px;padding:0 16px 6px;font:500 9px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,225,.25);}
+.debt-head{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 28px;gap:8px;padding:0 16px 6px;font:500 10px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#F0EBE1;}
 .add-debt{display:flex;align-items:center;gap:8px;background:none;border:1px dashed rgba(255,255,255,.1);border-radius:4px;padding:12px 16px;color:rgba(240,235,225,.35);font:300 13px/1 'Inter',sans-serif;cursor:pointer;width:100%;transition:all .18s;}
 .add-debt:hover{border-color:rgba(201,162,39,.3);color:#C9A227;}
 .strat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
@@ -57,15 +61,16 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px
 .strat-btn.active{border-color:#C9A227;background:#0D0C09;color:#F0EBE1;}
 
 /* RESULTS */
-.results{position:sticky;top:20px;display:flex;flex-direction:column;gap:14px;}
+.results{position:sticky;top:20px;display:flex;flex-direction:column;gap:14px;opacity:0;pointer-events:none;transition:opacity .6s ease;}
+.results.revealed{opacity:1;pointer-events:auto;}
 .result-card{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:24px 22px;}
-.result-label{font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.7);margin-bottom:7px;}
+.result-label{font:500 12px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.7);margin-bottom:7px;}
 .result-num{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:42px;line-height:1;color:#C9A227;margin-bottom:4px;}
-.result-sub{font:300 13px/1.4 'Inter',sans-serif;color:#F0EBE1;}
+.result-sub{font:300 15px/1.4 'Inter',sans-serif;color:#F0EBE1;}
 .result-green{color:#6DA87A;}
 .bible-box{background:#13120E;border-left:2px solid #C9A227;padding:14px 16px;border-radius:0 4px 4px 0;}
 .bible-ref{font:500 9px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C9A227;margin-bottom:7px;}
-.bible-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.5;color:#F0EBE1;}
+.bible-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.5;color:#F0EBE1;}
 .tbl{background:#0D0C09;border:1px solid rgba(255,255,255,.07);border-radius:4px;overflow:hidden;}
 .tbl-head{display:grid;grid-template-columns:repeat(3,1fr);padding:9px 16px;background:#0A0908;}
 .tbl-head span{font:500 10px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,225,.65);}
@@ -106,17 +111,21 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px
           <input type="number" value="{{ extra }}" onInput="{{ setExtra }}" min="0" max="5000" step="50">
         </div>
         <input type="range" min="0" max="2000" step="50" value="{{ extra }}" onInput="{{ setExtra }}">
-        <div class="field-hint">How much extra you can pay toward debts each month, beyond minimums</div>
+        <div class="field-hint" style="margin-top:6px;">💡 Check your statement or ask your bank for the annual rate (APR). We calculate the monthly interest automatically.</div>
       </div>
       <div>
-        <div class="debt-head"><span>Debt name</span><span>Balance ($)</span><span>Rate (%) / Min ($)</span><span></span></div>
+        <div class="debt-head"><span>Debt name</span><span>Balance ($)</span><span>Annual Rate %</span><span>Min. payment ($)</span><span></span></div>
         <div class="debt-list">
           <sc-for list="{{ debts }}" as="d" hint-placeholder-count="2">
             <div class="debt-item">
-              <input class="debt-input" type="text" placeholder="Credit card..." value="{{ d.name }}" onInput="{{ d.setName }}">
-              <input class="debt-input" type="number" placeholder="5000" value="{{ d.balance }}" onInput="{{ d.setBalance }}">
-              <input class="debt-input" type="number" placeholder="24.9" value="{{ d.rate }}" onInput="{{ d.setRate }}">
-              <button class="debt-rm" onClick="{{ d.remove }}">×</button>
+              <div class="debt-inputs">
+                <input class="debt-input" type="text" placeholder="Credit card..." value="{{ d.name }}" onInput="{{ d.setName }}">
+                <input class="debt-input" type="number" placeholder="5000" value="{{ d.balance }}" onInput="{{ d.setBalance }}">
+                <input class="debt-input" type="number" placeholder="24.9" value="{{ d.rate }}" onInput="{{ d.setRate }}">
+                <input class="debt-input" type="number" placeholder="150" value="{{ d.min }}" onInput="{{ d.setMin }}">
+                <button class="debt-rm" onClick="{{ d.remove }}">×</button>
+              </div>
+              <div class="{{ d.infoClass }}">{{ d.infoText }}</div>
             </div>
           </sc-for>
         </div>
@@ -133,8 +142,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px
         <div class="bible-ref">📖 Proverbs 22:7</div>
         <div class="bible-q">"The rich rule over the poor, and the borrower is slave to the lender."</div>
       </div>
+      <button style="width:100%;background:#C9A227;color:#13120E;font:700 17px/1 'Inter',sans-serif;padding:20px;border:none;border-radius:4px;cursor:pointer;margin-top:8px;" onClick="{{ reveal }}">Calculate My Freedom →</button>
     </div>
-    <div class="results">
+    <div class="{{ revealedCls }}">
       <div class="result-card">
         <div class="result-label">Debt-Free In</div>
         <div class="result-num">{{ debtFreeIn }}</div>
@@ -231,9 +241,10 @@ class Component extends DCLogic {
     tab: 'debt',
     extra: 200,
     strategy: 'snowball',
+    revealed: false,
     debts: [
-      { id: 1, name: 'Credit Card', balance: 5000, rate: 24.99 },
-      { id: 2, name: 'Car Loan', balance: 12000, rate: 7.5 },
+      { id: 1, name: 'Credit Card', balance: 5000, rate: 24.99, min: 150 },
+      { id: 2, name: 'Car Loan', balance: 12000, rate: 7.5, min: 300 },
     ],
     monthly: 300, rate: 10, years: 25,
   };
@@ -246,33 +257,33 @@ class Component extends DCLogic {
   fmtC(n) { return n.toLocaleString('en-US', {minimumFractionDigits:0,maximumFractionDigits:0}); }
 
   calcDebt(debts, extra, strategy) {
-    if (!debts.length) return { months: 0, interestSaved: 0 };
-    let ds = debts.map(d => ({ ...d, balance: +d.balance || 0, rate: +d.rate || 0, min: Math.max(25, (+d.balance||0) * 0.02) })).filter(d => d.balance > 0);
-    if (!ds.length) return { months: 0, interestSaved: 0 };
-
+    if (!debts.length) return { months: 0, interestSaved: 0, warning: null };
+    let allDs = debts.map(d => ({ ...d, balance: +d.balance || 0, rate: +d.rate || 0, min: +d.min || 0 })).filter(d => d.balance > 0 && d.min > 0);
+    if (!allDs.length) return { months: 0, interestSaved: 0, warning: null };
+    // Separate impossible debts
+    const impossible = allDs.filter(d => d.min <= d.balance * d.rate/100/12);
+    let ds = allDs.filter(d => d.min > d.balance * d.rate/100/12);
+    const warning = impossible.length ? impossible.map(d => '"'+d.name+'": min $'+d.min+' < monthly interest $'+Math.ceil(d.balance*d.rate/100/12)+'. Increase minimum to pay off.').join(' | ') : null;
+    if (!ds.length) return { months: 0, interestSaved: 0, warning, error: true };
     // Min-only interest first
-    let minOnlyMonths = 0, minOnlyInterest = 0;
+    let minOnlyInterest = 0;
     let ds0 = ds.map(d => ({ ...d }));
     for (let m = 0; m < 600 && ds0.some(d => d.balance > 0); m++) {
       ds0.forEach(d => { if (d.balance <= 0) return; const int = d.balance * d.rate/100/12; minOnlyInterest += int; const pay = Math.min(d.balance + int, d.min); d.balance = d.balance + int - pay; });
-      minOnlyMonths++;
     }
-
     // With strategy
     let months = 0, totalInterest = 0;
     let dsS = ds.map(d => ({ ...d }));
     for (let m = 0; m < 600 && dsS.some(d => d.balance > 0); m++) {
-      let avail = extra;
-      dsS.forEach(d => { if (d.balance <= 0) return; const int = d.balance * d.rate/100/12; totalInterest += int; const pay = Math.min(d.balance + int, d.min); d.balance = Math.max(0, d.balance + int - pay); avail -= 0; });
-      // Sort and apply extra
+      dsS.forEach(d => { if (d.balance <= 0) return; const int = d.balance * d.rate/100/12; totalInterest += int; const pay = Math.min(d.balance + int, d.min); d.balance = Math.max(0, d.balance + int - pay); });
       const active = dsS.filter(d => d.balance > 0);
       if (strategy === 'snowball') active.sort((a,b) => a.balance - b.balance);
       else active.sort((a,b) => b.rate - a.rate);
-      let rem = avail;
+      let rem = extra;
       for (const d of active) { if (rem <= 0) break; const pay = Math.min(d.balance, rem); d.balance = Math.max(0, d.balance - pay); rem -= pay; }
       months++;
     }
-    return { months, interestSaved: Math.max(0, minOnlyInterest - totalInterest) };
+    return { months, interestSaved: Math.max(0, minOnlyInterest - totalInterest), warning };
   }
 
   calcInvest(monthly, rate, years) {
@@ -312,14 +323,25 @@ class Component extends DCLogic {
       showInvest: () => this.setState({ tab: 'invest' }),
       // Debt
       extra, setExtra: (e) => this.setState({ extra: +e.target.value }),
-      debts: debts.map((d, i) => ({
-        ...d,
-        setName: (e) => { const ds=[...this.state.debts]; ds[i]={...ds[i],name:e.target.value}; this.setState({debts:ds}); },
-        setBalance: (e) => { const ds=[...this.state.debts]; ds[i]={...ds[i],balance:+e.target.value||0}; this.setState({debts:ds}); },
-        setRate: (e) => { const ds=[...this.state.debts]; ds[i]={...ds[i],rate:+e.target.value||0}; this.setState({debts:ds}); },
-        remove: () => { const ds=this.state.debts.filter((_,j)=>j!==i); this.setState({debts:ds}); },
-      })),
-      addDebt: () => this.setState({ debts: [...debts, { id: Date.now(), name: '', balance: 0, rate: 0 }] }),
+      debts: debts.map((d, i) => {
+        const bal = +d.balance||0, rt = +d.rate||0, mn = +d.min||0;
+        const monthlyInt = bal > 0 && rt > 0 ? Math.ceil(bal * rt/100/12) : 0;
+        const ok = monthlyInt > 0 && mn > monthlyInt;
+        const warn = monthlyInt > 0 && mn > 0 && mn <= monthlyInt;
+        const infoClass = ok ? 'debt-info debt-info-ok' : (warn ? 'debt-info debt-info-warn' : 'debt-info');
+        const infoText = monthlyInt > 0 ? (ok ? '✓ Monthly interest: $'+monthlyInt+' · Your minimum covers it — good!' : (warn ? '⚠ Monthly interest: $'+monthlyInt+' ('+rt+'%/yr ÷ 12 × $'+bal+'). Minimum must exceed $'+monthlyInt+' to pay off.' : '')) : '';
+        return {
+          ...d,
+          infoClass, infoText,
+          setName: (e) => { const ds=[...this.state.debts]; ds[i]={...ds[i],name:e.target.value}; this.setState({debts:ds}); },
+          setBalance: (e) => { const ds=[...this.state.debts]; ds[i]={...ds[i],balance:+e.target.value||0}; this.setState({debts:ds}); },
+          setRate: (e) => { const ds=[...this.state.debts]; ds[i]={...ds[i],rate:+e.target.value||0}; this.setState({debts:ds}); },
+          setMin: (e) => { const ds=[...this.state.debts]; ds[i]={...ds[i],min:+e.target.value||0}; this.setState({debts:ds}); },
+          remove: () => { const ds=this.state.debts.filter((_,j)=>j!==i); this.setState({debts:ds}); },
+        };
+      }),
+      reveal: () => this.setState({ revealed: true }),
+      revealedCls: this.state.revealed ? 'results revealed' : 'results',
       snowballCls: strategy==='snowball'?'active':'',
       avalancheCls: strategy==='avalanche'?'active':'',
       setSnowball: () => this.setState({ strategy: 'snowball' }),
