@@ -157,7 +157,20 @@ footer{background:#0A0908;padding:30px 52px;display:flex;justify-content:space-b
 .f-copy{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.2);}
 .f-ig{font:300 12px/1 'Inter',sans-serif;color:rgba(240,235,225,.3);}
 
-@media(max-width:900px){nav{padding:0 24px;}.about{grid-template-columns:1fr;}.about-photo{height:440px;}.about-text,.s2,.tools,.timeline,.testimonials{padding:72px 24px;}.contact{padding:72px 24px;}.contact-inner{grid-template-columns:1fr;gap:48px;}.tools-grid{grid-template-columns:1fr;}.pr-grid{grid-template-columns:1fr;}.test-grid{grid-template-columns:1fr;}footer{flex-direction:column;gap:12px;text-align:center;padding:28px;}}
+.lead-wrap{padding:0 52px 96px;background:#0D0C09;}
+.lead-capture{max-width:1000px;margin:0 auto;background:#13120E;border:1px solid rgba(201,162,39,.3);border-radius:6px;padding:48px 44px;}
+.lead-eye{font:500 11px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A227;margin-bottom:14px;}
+.lead-capture h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:34px;color:#F0EBE1;margin-bottom:10px;}
+.lead-capture p.ld{font:300 16px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.55);margin-bottom:26px;max-width:580px;}
+.lead-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;}
+.lead-fields input{width:100%;background:#0D0C09;border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:14px 16px;font:300 15px/1 'Inter',sans-serif;color:#F0EBE1;outline:none;}
+.lead-fields input:focus{border-color:rgba(201,162,39,.4);}
+.lead-fields input::placeholder{color:rgba(240,235,225,.25);}
+.lead-consent{display:flex;gap:10px;align-items:flex-start;font:300 12.5px/1.5 'Inter',sans-serif;color:rgba(240,235,225,.45);margin-bottom:20px;cursor:pointer;}
+.lead-consent input{margin-top:2px;flex-shrink:0;width:16px;height:16px;accent-color:#C9A227;}
+.lead-btn{background:#C9A227;color:#13120E;font:600 14px/1 'Inter',sans-serif;padding:15px 32px;border:none;border-radius:4px;cursor:pointer;}
+@media(max-width:900px){nav{padding:0 20px;}.nav-links{gap:18px;}.nav-links a{font-size:13px;}.about{grid-template-columns:1fr;}.about-photo{height:440px;}.about-text,.s2,.tools,.timeline,.testimonials{padding:72px 24px;}.contact{padding:72px 24px;}.contact-inner{grid-template-columns:1fr;gap:48px;}.tools-grid{grid-template-columns:1fr;}.pr-grid{grid-template-columns:1fr;}.test-grid{grid-template-columns:1fr;}.lead-wrap{padding:0 20px 72px;}.lead-capture{padding:36px 24px;}.lead-fields{grid-template-columns:1fr;}footer{flex-direction:column;gap:12px;text-align:center;padding:28px;}}
+@media(max-width:640px){.nav-logo{font-size:19px;}.nav-links{gap:0;}.nav-links a:not(.nav-btn){display:none;}.nav-btn{padding:9px 14px!important;font-size:13px!important;}.tl-table{overflow-x:auto;}.h-title{font-size:46px;}}
 </style>
 </head>
 <body>
@@ -330,6 +343,26 @@ footer{background:#0A0908;padding:30px 52px;display:flex;justify-content:space-b
   </div>
 </section>
 
+<!-- LEAD CAPTURE -->
+<section class="lead-wrap">
+  <div class="lead-capture" id="subscribe">
+    <div class="lead-eye">Free content</div>
+    <h3>Get the content that unlocks your financial life</h3>
+    <p class="ld">New materials, tools, and practical principles — straight to your inbox. No spam, at your own pace.</p>
+    <form action="https://formspree.io/f/meewypjj" method="POST" onsubmit="return submitLead(event, this)" data-success-title="You're subscribed" data-success-msg="Your first content is on its way. Thank you for walking with us.">
+      <input type="hidden" name="_subject" value="New subscriber — Newsletter (EN Home)">
+      <input type="hidden" name="origem" value="en-home-subscribe">
+      <div class="lead-fields">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your best e-mail" required>
+        <input type="tel" name="whatsapp" placeholder="WhatsApp" required>
+      </div>
+      <label class="lead-consent"><input type="checkbox" name="consent" required> I agree to receive content by e-mail and WhatsApp and to the processing of my data. I can unsubscribe anytime.</label>
+      <button type="submit" class="lead-btn">I want it →</button>
+    </form>
+  </div>
+</section>
+
 <!-- S7: CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
@@ -341,12 +374,16 @@ footer{background:#0A0908;padding:30px 52px;display:flex;justify-content:space-b
       <div class="c-ref">Psalm 23:1</div>
     </div>
     <div class="contact-form">
-      <div class="cf-field"><input type="text" placeholder="Full name"></div>
-      <div class="cf-field"><input type="email" placeholder="E-mail"></div>
-      <div class="cf-field"><input type="tel" placeholder="WhatsApp (optional)"></div>
-      <div class="cf-field"><textarea placeholder="Message (optional)"></textarea></div>
-      <button class="cf-submit">Send message →</button>
-      <p class="cf-note">Your data is treated with respect and privacy.</p>
+      <form action="https://formspree.io/f/meewypjj" method="POST" onsubmit="return submitLead(event, this)" data-success-title="Message sent" data-success-msg="Ilana will get in touch with you soon. Thank you.">
+        <input type="hidden" name="_subject" value="New contact — The Bible Knew First">
+        <input type="hidden" name="origem" value="en-home-contact">
+        <div class="cf-field"><input type="text" name="name" placeholder="Full name" required></div>
+        <div class="cf-field"><input type="email" name="email" placeholder="E-mail" required></div>
+        <div class="cf-field"><input type="tel" name="whatsapp" placeholder="WhatsApp (optional)"></div>
+        <div class="cf-field"><textarea name="message" placeholder="Message (optional)"></textarea></div>
+        <button type="submit" class="cf-submit">Send message →</button>
+        <p class="cf-note">Your data is treated with respect and privacy.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -357,6 +394,26 @@ footer{background:#0A0908;padding:30px 52px;display:flex;justify-content:space-b
   <div class="f-copy">© 2026 Ilana Horta · All rights reserved · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0a9aca1aea180afb0a5aea2a9a2aca9a1eea3afad">[email&#160;protected]</a></div>
   <div class="f-ig"><a href="https://instagram.com/ilanahorta" style="color:inherit;">@ilanahorta ↗</a></div>
 </footer>
+
+<script>
+async function submitLead(e, form){
+  e.preventDefault();
+  const btn = form.querySelector('button[type=submit]');
+  const orig = btn.textContent;
+  btn.textContent = 'Sending…'; btn.disabled = true;
+  try {
+    const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+    if (!res.ok) throw new Error();
+    const title = form.dataset.successTitle || 'Received';
+    const msg = form.dataset.successMsg || 'We will get in touch soon.';
+    form.innerHTML = `<div style="text-align:center;padding:24px 0;"><div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:30px;color:#C9A227;margin-bottom:10px;">${title}</div><p style="font:300 15px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.6);">${msg}</p></div>`;
+  } catch (err) {
+    btn.textContent = orig; btn.disabled = false;
+    alert('Could not send right now. Please try again in a moment.');
+  }
+  return false;
+}
+</script>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
