@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:#13120E;color:#F0EBE1;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;}
@@ -53,6 +54,20 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px
 .btn-gold{background:#C9A227;color:#13120E;font:600 12px/1 'Inter',sans-serif;letter-spacing:.06em;padding:14px 24px;border-radius:4px;display:inline-block;}
 .btn-ol{border:1px solid rgba(201,162,39,.35);color:#C9A227;font:500 12px/1 'Inter',sans-serif;letter-spacing:.06em;padding:13px 24px;border-radius:4px;display:inline-block;}
 .spacer{height:24px;}
+.dl-btn{background:#EEE7D6;color:#13120E;font:600 12px/1 'Inter',sans-serif;letter-spacing:.06em;padding:14px 24px;border:none;border-radius:4px;cursor:pointer;display:inline-block;}
+.dl-btn:hover{background:#fff;}
+.lead{background:#0D0C09;border:1px solid rgba(201,162,39,.3);border-radius:6px;padding:32px 28px;margin-top:36px;text-align:left;}
+.lead-eye{font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A227;margin-bottom:12px;}
+.lead h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#F0EBE1;margin-bottom:8px;}
+.lead p.ld{font:300 14px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.5);margin-bottom:20px;}
+.lead-fields{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.lead-fields input{width:100%;background:#13120E;border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:13px 15px;font:300 14px/1 'Inter',sans-serif;color:#F0EBE1;outline:none;}
+.lead-fields input:focus{border-color:rgba(201,162,39,.4);}
+.lead-fields input::placeholder{color:rgba(240,235,225,.25);}
+.lead-consent{display:flex;gap:9px;align-items:flex-start;font:300 12px/1.5 'Inter',sans-serif;color:rgba(240,235,225,.4);margin-bottom:18px;cursor:pointer;}
+.lead-consent input{margin-top:2px;flex-shrink:0;width:15px;height:15px;accent-color:#C9A227;}
+.lead-btn{width:100%;background:#C9A227;color:#13120E;font:600 13px/1 'Inter',sans-serif;padding:15px;border:none;border-radius:4px;cursor:pointer;}
+@media(max-width:600px){nav{padding:0 20px;}.hero{padding:56px 22px 40px;}.shell{padding:0 20px 72px;}.q-text{font-size:24px;}.res-title{font-size:34px;}.cta-row{flex-direction:column;}.cta-row .btn-gold,.cta-row .btn-ol,.cta-row .dl-btn{width:100%;text-align:center;box-sizing:border-box;}}
 </style>
 </helmet>
 
@@ -84,7 +99,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px
       <sc-if value="{{ showBack }}" hint-placeholder-val="{{ false }}">
         <button class="btn-back" onClick="{{ back }}">← Back</button>
       </sc-if>
-      <button class="btn-next {{ nextCls }}" onClick="{{ next }}">{{ nextLabel }}</button>
     </div>
   </sc-if>
 
@@ -103,10 +117,46 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px
       </div>
       <div class="cta-row">
         <a href="thebibleknewfirst-calculator.dc.html" class="btn-gold">Calculate My Freedom →</a>
+        <button class="dl-btn" onClick="{{ download }}">Download My Result</button>
         <a href="index.html#contact" class="btn-ol">Talk to Ilana</a>
+      </div>
+      <div class="lead">
+        <div class="lead-eye">Free content</div>
+        <h3>Get the content that unlocks your financial life</h3>
+        <p class="ld">New materials, tools, and practical principles — straight to your inbox. No spam, at your own pace.</p>
+        <form action="https://formspree.io/f/meewypjj" method="POST" onSubmit="{{ submitLead }}">
+          <input type="hidden" name="_subject" value="New subscriber — Newsletter (EN Quiz)">
+          <input type="hidden" name="origem" value="en-quiz-subscribe">
+          <div class="lead-fields">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your best e-mail" required>
+            <input type="tel" name="whatsapp" placeholder="WhatsApp" required>
+          </div>
+          <label class="lead-consent"><input type="checkbox" name="consent" required> I agree to receive content by e-mail and WhatsApp and to the processing of my data. I can unsubscribe anytime.</label>
+          <button type="submit" class="lead-btn">I want it →</button>
+        </form>
       </div>
       <div class="spacer"></div>
       <button class="btn-back" onClick="{{ restart }}" style="margin:0 auto;display:block;">Retake the Quiz</button>
+
+      <div id="en-share-card" style="position:absolute;left:-99999px;top:0;width:1080px;background:#13120E;color:#F0EBE1;font-family:'Inter',sans-serif;padding:72px;box-sizing:border-box;text-align:left;">
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:42px;color:#C9A227;margin-bottom:8px;">The Bible Knew First.</div>
+        <div style="font:500 17px/1 'Inter',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#C9A227;margin-bottom:44px;">Financial Diagnostic</div>
+        <div style="font:500 19px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.4);margin-bottom:14px;">My profile</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:80px;color:#F0EBE1;line-height:1;margin-bottom:22px;">{{ resTitle }}</div>
+        <div style="font:300 26px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.7);margin-bottom:44px;">{{ resDesc }}</div>
+        <div style="display:flex;flex-direction:column;gap:22px;">
+          <sc-for list="{{ resSteps }}" as="s" hint-placeholder-count="3">
+            <div style="display:flex;gap:20px;align-items:flex-start;">
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:34px;color:#C9A227;line-height:1;flex:none;">{{ s.n }}</div>
+              <div style="font:300 23px/1.5 'Inter',sans-serif;color:#F0EBE1;"><strong style="color:#fff;font-weight:600;">{{ s.title }}</strong> — {{ s.text }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,.14);margin-top:44px;padding-top:32px;text-align:center;">
+          <div style="font:300 24px/1 'Inter',sans-serif;color:rgba(240,235,225,.6);">Take the free diagnostic at <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:30px;color:#C9A227;">thebibleknewfirst.com</span></div>
+        </div>
+      </div>
     </div>
   </sc-if>
 </div>
@@ -198,7 +248,12 @@ class Component extends DCLogic {
       opts: cur.o.map((label, i) => ({
         label,
         cls: answers[q] === i ? 'sel' : '',
-        pick: () => this.setState({ answers: { ...this.state.answers, [q]: i } }),
+        pick: () => {
+          const cq = this.state.q;
+          const na = { ...this.state.answers, [cq]: i };
+          if (cq >= 12) this.setState({ answers: na, done: true });
+          else this.setState({ answers: na, q: cq + 1 });
+        },
       })),
       next: () => {
         if (this.state.answers[this.state.q] === undefined) return;
@@ -207,6 +262,32 @@ class Component extends DCLogic {
       },
       back: () => this.setState({ q: Math.max(0, this.state.q - 1) }),
       restart: () => this.setState({ q: 0, answers: {}, done: false }),
+      download: async () => {
+        const card = document.getElementById('en-share-card');
+        if (!card || typeof html2canvas === 'undefined') return;
+        try {
+          if (document.fonts && document.fonts.ready) await document.fonts.ready;
+          const canvas = await html2canvas(card, { backgroundColor: '#13120E', scale: 1.5, width: 1080, windowWidth: 1080 });
+          const link = document.createElement('a');
+          link.download = 'my-financial-profile.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        } catch (e) {}
+      },
+      submitLead: async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const btn = form.querySelector('button[type=submit]');
+        const orig = btn.textContent; btn.textContent = 'Sending…'; btn.disabled = true;
+        try {
+          const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+          if (!res.ok) throw new Error();
+          form.innerHTML = '<div style="text-align:center;padding:18px 0;"><div style="font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:26px;color:#C9A227;margin-bottom:8px;">You are subscribed</div><p style="font:300 14px/1.6 \'Inter\',sans-serif;color:rgba(240,235,225,.6);">Your first content is on its way. Thank you for walking with us.</p></div>';
+        } catch (err) {
+          btn.textContent = orig; btn.disabled = false;
+          alert('Could not send right now. Please try again in a moment.');
+        }
+      },
       resTitle: res ? res.title : '',
       resDesc: res ? res.desc : '',
       resSteps: res ? res.steps : [],

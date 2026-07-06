@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:#13120E;color:#F0EBE1;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;}
@@ -81,7 +82,21 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px
 .cta-row{display:flex;gap:10px;}
 .btn-gold{flex:1;background:#C9A227;color:#13120E;font:600 11px/1 'Inter',sans-serif;letter-spacing:.06em;padding:13px;border-radius:4px;text-align:center;display:block;}
 .btn-ol{flex:1;border:1px solid rgba(201,162,39,.3);color:#C9A227;font:500 11px/1 'Inter',sans-serif;letter-spacing:.06em;padding:12px;border-radius:4px;text-align:center;display:block;}
-@media(max-width:720px){.shell{grid-template-columns:1fr;}.results{position:static;}nav{padding:0 24px;}.hero{padding:48px 24px 32px;}.shell{padding:36px 24px 80px;}}
+.btn-dl{flex:1;background:#EEE7D6;color:#13120E;font:600 11px/1 'Inter',sans-serif;letter-spacing:.06em;padding:13px;border:none;border-radius:4px;text-align:center;cursor:pointer;}
+.btn-dl:hover{background:#fff;}
+.lead-wrap{max-width:720px;margin:0 auto 48px;padding:0 52px;}
+.lead{background:#0D0C09;border:1px solid rgba(201,162,39,.3);border-radius:6px;padding:36px 32px;}
+.lead-eye{font:500 10px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A227;margin-bottom:12px;}
+.lead h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:#F0EBE1;margin-bottom:8px;}
+.lead p.ld{font:300 14px/1.6 'Inter',sans-serif;color:rgba(240,235,225,.5);margin-bottom:20px;}
+.lead-fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+.lead-fields input{width:100%;background:#13120E;border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:13px 15px;font:300 14px/1 'Inter',sans-serif;color:#F0EBE1;outline:none;}
+.lead-fields input:focus{border-color:rgba(201,162,39,.4);}
+.lead-fields input::placeholder{color:rgba(240,235,225,.25);}
+.lead-consent{display:flex;gap:9px;align-items:flex-start;font:300 12px/1.5 'Inter',sans-serif;color:rgba(240,235,225,.4);margin-bottom:18px;cursor:pointer;}
+.lead-consent input{margin-top:2px;flex-shrink:0;width:15px;height:15px;accent-color:#C9A227;}
+.lead-btn{width:100%;background:#C9A227;color:#13120E;font:600 13px/1 'Inter',sans-serif;padding:15px;border:none;border-radius:4px;cursor:pointer;}
+@media(max-width:720px){.shell{grid-template-columns:1fr;padding:36px 22px 80px;}.results{position:static;}nav{padding:0 20px;}.hero{padding:48px 22px 32px;}.tabs{flex-direction:column;}.debt-head{display:none;}.debt-inputs{grid-template-columns:1fr 1fr;gap:8px 10px;}.debt-rm{justify-self:end;}.cta-row{flex-wrap:wrap;}.lead-wrap{padding:0 20px;}.lead-fields{grid-template-columns:1fr;}}
 </style>
 </helmet>
 
@@ -161,6 +176,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px
         <div class="result-sub">by paying extra ${{ extra }}/month</div>
       </div>
       <div class="cta-row">
+        <button class="btn-dl" onClick="{{ download }}">Download Result</button>
         <a href="thebibleknewfirst-budget.dc.html" class="btn-gold">Build My Budget →</a>
         <a href="index.html#contact" class="btn-ol">Talk to Ilana</a>
       </div>
@@ -227,12 +243,33 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 52px
       </div>
       <div class="disc">Illustrative only. Past returns don't guarantee future results. SEC: investor.gov</div>
       <div class="cta-row">
+        <button class="btn-dl" onClick="{{ download }}">Download Result</button>
         <a href="thebibleknewfirst-budget.dc.html" class="btn-gold">Build My Budget →</a>
         <a href="index.html#contact" class="btn-ol">Talk to Ilana</a>
       </div>
     </div>
   </div>
 </sc-if>
+
+<div class="lead-wrap">
+  <div class="lead">
+    <div class="lead-eye">Free content</div>
+    <h3>Get the content that unlocks your financial life</h3>
+    <p class="ld">New materials, tools, and practical principles — straight to your inbox. No spam, at your own pace.</p>
+    <form action="https://formspree.io/f/meewypjj" method="POST" onSubmit="{{ submitLead }}">
+      <input type="hidden" name="_subject" value="New subscriber — Newsletter (EN Calculator)">
+      <input type="hidden" name="origem" value="en-calculator-subscribe">
+      <div class="lead-fields">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your best e-mail" required>
+        <input type="tel" name="whatsapp" placeholder="WhatsApp" required>
+      </div>
+      <label class="lead-consent"><input type="checkbox" name="consent" required> I agree to receive content by e-mail and WhatsApp and to the processing of my data. I can unsubscribe anytime.</label>
+      <button type="submit" class="lead-btn">I want it →</button>
+    </form>
+  </div>
+</div>
+<div id="en-calc-share" style="position:absolute;left:-99999px;top:0;width:1080px;background:#13120E;color:#F0EBE1;font-family:'Inter',sans-serif;padding:72px;box-sizing:border-box;"></div>
 
 </x-dc>
 <script type="text/x-dc" data-dc-script>
@@ -360,6 +397,48 @@ class Component extends DCLogic {
       setMonthly: (e) => this.setState({ monthly: +e.target.value }),
       setRate: (e) => this.setState({ rate: +e.target.value }),
       setYears: (e) => this.setState({ years: +e.target.value }),
+      download: async () => {
+        const el = document.getElementById('en-calc-share');
+        if (!el || typeof html2canvas === 'undefined') return;
+        const brand = `<div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:42px;color:#C9A227;margin-bottom:6px;">The Bible Knew First.</div>`;
+        const foot = (v, r) => `<div style="border-top:1px solid rgba(255,255,255,.14);margin-top:44px;padding-top:36px;text-align:center;"><div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;color:#F0EBE1;line-height:1.5;margin-bottom:10px;">${v}</div><div style="font:500 16px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C9A227;margin-bottom:28px;">${r}</div><div style="font:300 22px/1 'Inter',sans-serif;color:rgba(240,235,225,.6);">Calculate yours at <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;color:#C9A227;">thebibleknewfirst.com</span></div></div>`;
+        const stat = (label, val, color) => `<div style="background:#0D0C09;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:34px;flex:1;"><div style="font:500 15px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,235,225,.55);margin-bottom:14px;">${label}</div><div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:44px;color:${color};line-height:1.05;">${val}</div></div>`;
+        let inner, fname;
+        if (isDebt) {
+          inner = brand + `<div style="font:500 15px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.4);margin-bottom:40px;">My freedom plan</div>` +
+            `<div style="margin-bottom:24px;"><div style="font:500 15px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,235,225,.55);margin-bottom:12px;">Debt-free in</div><div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:64px;color:#C9A227;line-height:1;margin-bottom:8px;">${debtFreeIn}</div><div style="font:300 22px/1 'Inter',sans-serif;color:#F0EBE1;">${debtFreeDate}</div></div>` +
+            `<div style="display:flex;gap:20px;">${stat('Total debt', '$' + this.fmtC(totalDebt), '#F0EBE1')}${stat('Interest saved', '$' + this.fmtC(interestSaved), '#6DA87A')}</div>` +
+            foot('"The rich rule over the poor, and the borrower is slave to the lender."', 'Proverbs 22:7');
+          fname = 'my-freedom-plan.png';
+        } else {
+          inner = brand + `<div style="font:500 15px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,235,225,.4);margin-bottom:40px;">My investment plan</div>` +
+            `<div style="text-align:center;background:#0D0C09;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:44px;margin-bottom:20px;"><div style="font:500 15px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,235,225,.55);margin-bottom:14px;">Total accumulated</div><div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:76px;color:#C9A227;line-height:1;margin-bottom:10px;">$${this.fmt(total)}</div><div style="font:300 22px/1 'Inter',sans-serif;color:#F0EBE1;">after ${years} years at $${monthly}/month</div></div>` +
+            `<div style="display:flex;gap:20px;">${stat('Your deposits', '$' + this.fmt(deposited), '#F0EBE1')}${stat('Compound growth', '$' + this.fmt(earnings), '#6DA87A')}</div>` +
+            foot('"…you would have received it back with interest."', 'Matthew 25:27');
+          fname = 'my-investment-plan.png';
+        }
+        el.innerHTML = inner;
+        try {
+          if (document.fonts && document.fonts.ready) await document.fonts.ready;
+          const c = await html2canvas(el, { backgroundColor: '#13120E', scale: 1.5, width: 1080, windowWidth: 1080 });
+          const link = document.createElement('a');
+          link.download = fname; link.href = c.toDataURL('image/png'); link.click();
+        } catch (e) {}
+      },
+      submitLead: async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const btn = form.querySelector('button[type=submit]');
+        const orig = btn.textContent; btn.textContent = 'Sending…'; btn.disabled = true;
+        try {
+          const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+          if (!res.ok) throw new Error();
+          form.innerHTML = '<div style="text-align:center;padding:18px 0;"><div style="font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:26px;color:#C9A227;margin-bottom:8px;">You are subscribed</div><p style="font:300 14px/1.6 \'Inter\',sans-serif;color:rgba(240,235,225,.6);">Your first content is on its way. Thank you for walking with us.</p></div>';
+        } catch (err) {
+          btn.textContent = orig; btn.disabled = false;
+          alert('Could not send right now. Please try again in a moment.');
+        }
+      },
     };
   }
 }
